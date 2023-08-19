@@ -5,7 +5,8 @@
 @section('content')
     <div class="container-fluid" style="margin-top: 6rem;">
         <div class="card  mb-5">
-            <form action="#" method="POST" enctype="multipart/form-data">
+            <form action="/booking-store/{{ $date->id }}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <h5 class="fs-monserrat text-center p-3">Form Booking Ticket</h5>
                 <hr>
                 <div class="container-fluid p-2">
@@ -46,7 +47,7 @@
                     <h5 class="text-center fs-monserrat my-4">Schedules at {{ $date->date }}</h5>
                     <input type="hidden" id="status" value="{{ $date->status }}">
 
-                    <select name="date" class="form-control" id="time">
+                    <select name="time" class="form-control" id="time">
                         <option value="">Choose Time</option>
                         @foreach ($time as $item)
                         <option value="{{ $item->id }}">{{$item->time}} | slot : {{ $item->slot }}</option> 
@@ -70,7 +71,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="">Proof of payment <span class="text-danger">*</span></label>
-                            <input type="file" class="form-control" id="image" onchange="imgPreview()" required>
+                            <input type="file" name="invoice" class="form-control" id="image" onchange="imgPreview()" required>
                             <div class="my-4">
                                 <img class="img-preview d-block mx-auto" style="max-width: 300px"  alt="">
                             </div>

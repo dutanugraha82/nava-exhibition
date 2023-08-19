@@ -23,6 +23,7 @@
   </style>
   @stack('css')
   <body style="background-color: #070d3d">
+    @include('sweetalert::alert')
       <nav class="navbar navbar-dark fixed-top p-2" style="background-color: #070d3d">
             <div class="container">
             <a class="navbar-brand" href="/">
