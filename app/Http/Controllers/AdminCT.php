@@ -2,12 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminCT extends Controller
 {
+    public function index(Request $request){
+            if ($request->ajax()) {
+            $customer = Customer::all();
+            return datatables()->of($customer)
+            ->addIndexColumn()
+            ->addColumn('action', function(){
+                return 'Action';
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+        }
+        return view('admin.contents.dashboard');
+    }
+
     public function login(){
         return view('admin.contents.login');
     }

@@ -1,7 +1,6 @@
 @extends('admin.master')
 @section('content')
 <div class="row">
-
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-primary shadow h-100 py-2">
@@ -85,5 +84,45 @@
         </div>
     </div>
 </div>
-
+<hr>
+<div class="mt-4">
+    <div class="row">
+        <div class="col-12 table-responsive">
+            <table class="hover" id="customers">
+                <thead>
+                    <tr>
+                        <th>Reg. Code</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Size</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
 @endsection
+@push('js')
+ <script type="text/javascript">
+        $(function () {
+            var table = $('#customers').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('admin.dashboard') }}",
+                columns: [
+                    {data: 'code', name: 'code'},
+                    {data: 'name', name: 'name'},
+                    {data: 'email', name: 'email'},
+                    {data: 'schedule_id', name: 'schedule_id'},
+                    {data: 'time', name: 'time'},
+                    {data: 'shoes', name: 'shoes'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
+            });
+        });
+</script>
+@endpush

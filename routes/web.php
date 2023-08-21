@@ -31,10 +31,20 @@ Route::get('/admin', function(){
 Route::get('/login', [AdminCT::class,'login'])->name('login');
 Route::post('/login',[AdminCT::class,'authenticate']);
 Route::post('/logout',[AdminCT::class,'logout'])->middleware('auth');
-
+// Superadmin Route
 Route::middleware(['auth','superadmin','preventBack'])->prefix('/superadmin')->group(function(){
     Route::get('/', [SuperAdminCT::class,'index']);
+    Route::get('/admin-users', [SuperAdminCT::class,'adminUsers']);
+    Route::post('/admin-users/create', [SuperAdminCT::class,'storeAdminUsers']);
 });
+// Route End
+
+// Admin Route
+Route::middleware(['auth','admin','preventBack'])->prefix('/admin')->group(function(){
+    Route::get('/',[AdminCT::class,'index'])->name('admin.dashboard');
+});
+// Route End
+
 
 Route::get('/booking', [CustomerController::class,'bookDate']);
 Route::post('/booking', [CustomerController::class,'bookDatePost']);
