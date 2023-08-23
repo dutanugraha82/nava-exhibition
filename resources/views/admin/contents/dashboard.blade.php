@@ -96,7 +96,7 @@
                         <th>Email</th>
                         <th>Date</th>
                         <th>Time</th>
-                        <th>Size</th>
+                        <th>Invoice</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -106,23 +106,46 @@
     </div>
 </div>
 @endsection
+@if (auth()->user()->role == 'superadmin')
 @push('js')
- <script type="text/javascript">
-        $(function () {
-            var table = $('#customers').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: "{{ route('admin.dashboard') }}",
-                columns: [
-                    {data: 'code', name: 'code'},
-                    {data: 'name', name: 'name'},
-                    {data: 'email', name: 'email'},
-                    {data: 'schedule_id', name: 'schedule_id'},
-                    {data: 'time', name: 'time'},
-                    {data: 'shoes', name: 'shoes'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false},
-                ]
-            });
-        });
+<script type="text/javascript">
+       $(function () {
+           var table = $('#customers').DataTable({
+               processing: true,
+               serverSide: true,
+               ajax: "{{ route('superadmin.dashboard') }}",
+               columns: [
+                   {data: 'code', name: 'code'},
+                   {data: 'name', name: 'name'},
+                   {data: 'email', name: 'email'},
+                   {data: 'date', name: 'date'},
+                   {data: 'time', name: 'time'},
+                   {data: 'file', name: 'file'},
+                   {data: 'action', name: 'action', orderable: false, searchable: false},
+               ]
+           });
+       });
 </script>
 @endpush
+@elseif(auth()->user()->role == 'admin')
+@push('js')
+<script type="text/javascript">
+       $(function () {
+           var table = $('#customers').DataTable({
+               processing: true,
+               serverSide: true,
+               ajax: "{{ route('admin.dashboard') }}",
+               columns: [
+                   {data: 'code', name: 'code'},
+                   {data: 'name', name: 'name'},
+                   {data: 'email', name: 'email'},
+                   {data: 'date', name: 'date'},
+                   {data: 'time', name: 'time'},
+                   {data: 'file', name: 'file'},
+                   {data: 'action', name: 'action', orderable: false, searchable: false},
+               ]
+           });
+       });
+</script>
+@endpush
+@endif

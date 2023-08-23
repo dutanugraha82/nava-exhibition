@@ -59,7 +59,7 @@ class CustomerController extends Controller
 
         Customer::insert([
             'schedule_id' => $id,
-            'time' => $request->time,
+            'time_id' => $request->time,
             'code' => $code,
             'name' => $request->name,
             'email' => $request->email,

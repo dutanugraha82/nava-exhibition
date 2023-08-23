@@ -16,4 +16,5 @@ class Schedule extends Model
         'date',
         'status',
     ];
+
 }

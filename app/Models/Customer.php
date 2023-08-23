@@ -12,7 +12,7 @@ class Customer extends Model
     protected $fillable = [
         'id',
         'schedule_id',
-        'time',
+        'time_id',
         'code',
         'name',
         'email',
@@ -25,4 +25,12 @@ class Customer extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function date(){
+        return $this->belongsTo(Schedule::class,'id');
+    }
+
+    public function time(){
+        return $this->belongsTo(Time::class,'id');
+    }
 }

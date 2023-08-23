@@ -17,6 +17,8 @@ class CreateCustomerTable extends Migration
             $table->id();
             $table->unsignedBigInteger('schedule_id');
             $table->foreign('schedule_id')->references('id')->on('schedule');
+            $table->unsignedBigInteger('time_id');
+            $table->foreign('time_id')->references('id')->on('time');
             $table->string('code');
             $table->string('name');
             $table->string('email');

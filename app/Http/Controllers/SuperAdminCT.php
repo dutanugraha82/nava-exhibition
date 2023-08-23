@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -10,7 +11,26 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class SuperAdminCT extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+        if ($request->ajax()) {
+            $customer = Customer::where('status','=',0)->get();
+            return datatables()->of($customer)
+            ->addIndexColumn()
+            ->addColumn('action', function(){
+                return 'only Admin';
+            })
+            ->addColumn('file', function($customer){
+                return "<a href=".asset('/storage'.'/'.$customer->invoice)." target='_blank' rel='noopener noreferrer'>show</a>";
+            })
+            ->addColumn('date', function($customer){
+                return $customer->date->date;
+            })
+            ->addColumn('time', function($customer){
+                return $customer->time->time;
+            })
+            ->rawColumns(['action','file','date','time'])
+            ->make(true);
+        }
         return view('admin.contents.dashboard');
     }
 
