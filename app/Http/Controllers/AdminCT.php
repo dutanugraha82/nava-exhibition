@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Mail\SendTicket;
 use App\Models\Customer;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -12,6 +13,13 @@ use RealRashid\SweetAlert\Facades\Alert;
 class AdminCT extends Controller
 {
     public function index(Request $request){
+
+        $ticket = DB::table('customer')->where('status','=',1)->sum('amount');
+        $grandTotal = DB::table('customer')->where('status','=',1)->sum('total_price');
+        $earning = $this->moneyFormat($grandTotal);
+        $approvedCustomers = DB::table('customer')->where('status','=',1)->count();
+        $pendingCustomers = DB::table('customer')->where('status','=',0)->count();
+
             if ($request->ajax()) {
                 $customer = Customer::where('status','=',0)->get();
             return datatables()->of($customer)
@@ -42,17 +50,24 @@ class AdminCT extends Controller
             ->rawColumns(['action','file','date','time'])
             ->make(true);
         }
-        return view('admin.contents.dashboard');
+
+        return view('admin.contents.dashboard', compact('ticket','approvedCustomers','pendingCustomers','earning'));
     }
 
-    public function validateCustomer(Request $request, $id){
-       $data =  Customer::find($id);
-        // dd($data);
+    public function validateCustomer($id){
+        $code = Str::random(6);
+        $data =  Customer::find($id);
+
+        $data->update([
+            'code' => $code,
+            'status' => 1,
+        ]);
+        
         $details = [
-            'title' => "This is Your Ticket for Nava Exhibition Enjoy!",
+            'title' => "Welcome to Nava Exhibition!",
             'body' => $data->name,
             'amount' => $data->amount,
-            'code' => $data->code,
+            'code' => $code,
             'date' => $data->date->date,
             'time' => $data->time->time,
             'shoes' => $data->shoes,
@@ -63,6 +78,33 @@ class AdminCT extends Controller
         Mail::to($data->email)->send(new SendTicket($details));
         Alert::success('Customer Validated!');
         return redirect('/admin');
+    }
+
+    public function approvedCustomers(Request $request){
+        
+        if($request->ajax()){
+            $approvedCustomers = Customer::where('status','=',1)->get();
+            return datatables()->of($approvedCustomers)
+            ->addIndexColumn()
+            ->addColumn('date', function($approvedCustomers){
+                return $approvedCustomers->date->date;
+            })
+            ->addColumn('time', function($approvedCustomers){
+                return $approvedCustomers->time->time;
+            })
+            ->addColumn('total', function($approvedCustomers){
+                return $this->moneyFormat($approvedCustomers->total_price);
+            })
+            ->rawColumns(['date','time','total'])
+            ->make(true);
+        }
+
+        return view('admin.contents.approvedCustomers');
+    }
+
+
+    public function moneyFormat($total_price){
+        return 'Rp ' . number_format($total_price, 2);
     }
 
     public function login(){

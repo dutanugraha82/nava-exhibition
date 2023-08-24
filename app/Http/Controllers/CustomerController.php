@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NotificationMail;
 use App\Models\Customer;
 use Carbon\Carbon;
 use App\Models\Schedule;
@@ -9,6 +10,7 @@ use App\Models\Time;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class CustomerController extends Controller
@@ -42,6 +44,7 @@ class CustomerController extends Controller
             'size' => 'required',
             'ticket' => 'required',
             'time' => 'required',
+            'invoice' => 'image|required',
         ]);
 
         $date = Schedule::find($id)->first();
@@ -52,7 +55,7 @@ class CustomerController extends Controller
             $total_price = $request->ticket * 100000;
         }
         // generate unique code
-        $code = Str::random(5);
+        
         // get time
         $time = Time::find($request->time)->first();
         $newSlot = $time->slot - $request->ticket;
@@ -60,7 +63,6 @@ class CustomerController extends Controller
         Customer::insert([
             'schedule_id' => $id,
             'time_id' => $request->time,
-            'code' => $code,
             'name' => $request->name,
             'email' => $request->email,
             'sex' => $request->sex,
@@ -74,9 +76,21 @@ class CustomerController extends Controller
         Time::find($request->time)->update([
             'slot' => $newSlot,
         ]);
+        $rupiah = $this->moneyFormat($total_price);
+        $details = [
+            'title' => 'Your booking has been received!',
+            'name' => $request->name,
+            'amount' => $request->ticket,
+            'total' => $rupiah,
+        ];
+        Mail::to($request->email)->send(new NotificationMail($details));
         Alert::success('Success!','Your Payment Under Validation, Please check your email periodically.');
         return redirect('/');
         
         
+    }
+
+    public function moneyFormat($total_price){
+        return 'Rp ' . number_format($total_price, 2);
     }
 }

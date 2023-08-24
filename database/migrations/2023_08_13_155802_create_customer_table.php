@@ -19,7 +19,7 @@ class CreateCustomerTable extends Migration
             $table->foreign('schedule_id')->references('id')->on('schedule');
             $table->unsignedBigInteger('time_id');
             $table->foreign('time_id')->references('id')->on('time');
-            $table->string('code');
+            $table->string('code')->nullable();
             $table->string('name');
             $table->string('email');
             $table->enum('sex',['male','female']);

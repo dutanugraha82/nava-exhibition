@@ -350,15 +350,11 @@
                     <tr>
                       <td>
                         <p>{{ $details['title'] }}</p>
-                        <p>Hello <b>{{ $details['body'] }}</b>, below is your ticket detail :</p>
-                        <small>Ticket Code:</small>
-                        <h5 style="font-size: 2em">{{ $details['code'] }}</h5>
+                        <p>Name : {{ $details['name']}}</p>
                         <p>Amount of ticket : {{ $details['amount'] }}</p>
-                        <p>Date : {{ $details['date'] }}</p>
-                        <p>Time : {{ $details['time'] }}</p>
-                        <p>Shoes : {{ $details['shoes'] }}</p>
-                        <p>Total : Rp {{ $details['total'] }}</p>
-                        <small>{{ $details['footer'] }}</small>
+                        <p>Total : {{ $details['total'] }}</p>
+                        <p>Your ticket will be validate under less than 24 hours, we will send your ticket to this email. Don't be shy to contact us if your ticket is not coming more than 24 hours. (;</p>
+                        <a href="https://wa.me/6285703485467"><p>Contact Us!</p></a>
                         <small>Nava Exhibition | Sangkuriang Tech &copy;2023</small>
                       </td>
                     </tr>

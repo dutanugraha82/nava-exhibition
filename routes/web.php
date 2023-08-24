@@ -44,25 +44,9 @@ Route::middleware(['auth','superadmin','preventBack'])->prefix('/superadmin')->g
 Route::middleware(['auth','admin','preventBack'])->prefix('/admin')->group(function(){
     Route::get('/',[AdminCT::class,'index'])->name('admin.dashboard');
     Route::put('/customer/{id}',[AdminCT::class,'validateCustomer']);
+    Route::get('/customers/validated',[AdminCT::class,'approvedCustomers'])->name('admin.approvedCustomers');
 });
 // Route End
-
-Route::get('/email/{id}',function($id){
-    $data =  Customer::find($id)->first();
-        // dd($data);
-        $details = [
-            'title' => "This is Your Ticket for Nava Exhibition, Enjoy!",
-            'body' => $data->name,
-            'amount' => $data->amount,
-            'code' => $data->code,
-            'date' => $data->date->date,
-            'time' => $data->time->time,
-            'shoes' => $data->shoes,
-            'total' => $data->total_price,
-            'footer' => "Please keep it secret! Your ticket can not be refund."
-        ];
-    return view('email.validateMail',compact('details'));
-});
 Route::get('/booking', [CustomerController::class,'bookDate']);
 Route::post('/booking', [CustomerController::class,'bookDatePost']);
 Route::get('/booking/{id}', [CustomerController::class,'booking']);
