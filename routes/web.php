@@ -48,6 +48,11 @@ Route::middleware(['auth','admin','preventBack'])->prefix('/admin')->group(funct
     Route::delete('/customer/{id}',[AdminCT::class,'deleteCustomer']);
 });
 // Route End
+
+Route::middleware(['auth','preventBack'])->group(function(){
+    Route::get('/profiles/edit',[AdminCT::class,'editProfile']);
+    Route::put('/profiles/{id}',[AdminCT::class,'updateProfile']);
+});
 Route::get('/booking', [CustomerController::class,'bookDate']);
 Route::post('/booking', [CustomerController::class,'bookDatePost']);
 Route::get('/booking/{id}', [CustomerController::class,'booking']);

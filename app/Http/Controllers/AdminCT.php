@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 use App\Mail\SendTicket;
 use App\Models\Customer;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -106,6 +108,38 @@ class AdminCT extends Controller
         Customer::find($id)->delete();
         Alert::success('Data Deleted!');
         return redirect('/admin'); 
+    }
+
+    public function editProfile(){
+       $profile = User::find(auth()->user()->id);
+        return view('admin.contents.profile.index', compact('profile'));
+    }
+
+    public function updateProfile(Request $request, $id){
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
+        if ($request->password) {
+            User::find($id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+        } else {
+            User::find($id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+        }
+        Alert::success('Profile Updated!');
+        if (auth()->user()->role == 'superadmin') {
+            return redirect('/superadmin');
+        }elseif(auth()->user()->role == 'admin'){
+            return redirect('/admin');
+        }
     }
 
 
