@@ -62,9 +62,11 @@
     </div>
 </div>
 <hr>
+<h5 class="text-center">Unvalidated Customers</h5>
 <div class="mt-4">
     <div class="row">
         <div class="col-12 table-responsive">
+            
             <table class="hover" id="customers">
                 <thead>
                     <tr>

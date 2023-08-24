@@ -34,7 +34,7 @@ class AdminCT extends Controller
                         <form action="/admin/customer/'.$customer->id.'" method="POST">
                         '.csrf_field().'
                         '.method_field('DELETE').'
-                            <button class="btn" type="submit"><i class="text-danger fa fa-trash"></i></button>
+                            <button class="btn" type="submit" onclick="javascript: return confirm(\'Hapus '.$customer->name.' ?\')"><i class="text-danger fa fa-trash"></i></button>
                         </form>
                         </div>';
             })
@@ -100,6 +100,12 @@ class AdminCT extends Controller
         }
 
         return view('admin.contents.approvedCustomers');
+    }
+
+    public function deleteCustomer($id){
+        Customer::find($id)->delete();
+        Alert::success('Data Deleted!');
+        return redirect('/admin'); 
     }
 
 
