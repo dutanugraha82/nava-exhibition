@@ -61,4 +61,8 @@ class SuperAdminCT extends Controller
         Alert::success('Data Added!');
         return redirect('/superadmin/admin-users');
     }
+    
+    public function moneyFormat($total_price){
+        return 'Rp ' . number_format($total_price, 2);
+    }
 }
