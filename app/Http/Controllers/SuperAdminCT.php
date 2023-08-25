@@ -12,6 +12,11 @@ use RealRashid\SweetAlert\Facades\Alert;
 class SuperAdminCT extends Controller
 {
     public function index(Request $request){
+        $ticket = DB::table('customer')->where('status','=',1)->sum('amount');
+        $grandTotal = DB::table('customer')->where('status','=',1)->sum('total_price');
+        $earning = $this->moneyFormat($grandTotal);
+        $approvedCustomers = DB::table('customer')->where('status','=',1)->count();
+        $pendingCustomers = DB::table('customer')->where('status','=',0)->count();
         if ($request->ajax()) {
             $customer = Customer::where('status','=',0)->get();
             return datatables()->of($customer)
@@ -31,7 +36,7 @@ class SuperAdminCT extends Controller
             ->rawColumns(['action','file','date','time'])
             ->make(true);
         }
-        return view('admin.contents.dashboard');
+        return view('admin.contents.dashboard', compact('ticket','approvedCustomers','pendingCustomers','earning'));
     }
 
     public function adminUsers(){
