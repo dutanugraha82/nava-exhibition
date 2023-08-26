@@ -37,6 +37,7 @@ Route::middleware(['auth','superadmin','preventBack'])->prefix('/superadmin')->g
     Route::get('/', [SuperAdminCT::class,'index'])->name('superadmin.dashboard');
     Route::get('/admin-users', [SuperAdminCT::class,'adminUsers']);
     Route::post('/admin-users/create', [SuperAdminCT::class,'storeAdminUsers']);
+    Route::get('/customers/rejected',[AdminCT::class,'rejectedCustomer'])->name('superadmin.rejectedCustomers');
 });
 // Route End
 
@@ -46,6 +47,7 @@ Route::middleware(['auth','admin','preventBack'])->prefix('/admin')->group(funct
     Route::put('/customer/{id}',[AdminCT::class,'validateCustomer']);
     Route::get('/customers/validated',[AdminCT::class,'approvedCustomers'])->name('admin.approvedCustomers');
     Route::delete('/customer/{id}',[AdminCT::class,'deleteCustomer']);
+    Route::get('/customers/rejected',[AdminCT::class,'rejectedCustomer'])->name('admin.rejectedCustomers');
 });
 // Route End
 

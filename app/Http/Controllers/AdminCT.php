@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Mail\AlertMail;
+use App\Models\Time;
+use App\Models\User;
 use App\Mail\SendTicket;
 use App\Models\Customer;
-use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,10 +23,10 @@ class AdminCT extends Controller
         $grandTotal = DB::table('customer')->where('status','=',1)->sum('total_price');
         $earning = $this->moneyFormat($grandTotal);
         $approvedCustomers = DB::table('customer')->where('status','=',1)->count();
-        $pendingCustomers = DB::table('customer')->where('status','=',0)->count();
+        $pendingCustomers = DB::table('customer')->where('status','=',0)->where('deleted_at','=', NULL)->count();
 
             if ($request->ajax()) {
-                $customer = Customer::where('status','=',0)->get();
+                $customer = Customer::where('status','=',0)->orderBy('created_at')->get();
             return datatables()->of($customer)
             ->addIndexColumn()
             ->addColumn('action', function($customer){
@@ -59,7 +62,7 @@ class AdminCT extends Controller
     public function validateCustomer($id){
         $code = Str::random(6);
         $data =  Customer::find($id);
-
+        $total_price = $this->moneyFormat($data->total_price);
         $data->update([
             'code' => $code,
             'status' => 1,
@@ -73,7 +76,7 @@ class AdminCT extends Controller
             'date' => $data->date->date,
             'time' => $data->time->time,
             'shoes' => $data->shoes,
-            'total' => $data->total_price,
+            'total' => $total_price,
             'footer' => "Please keep it secret! Your ticket can not be refund."
         ];
 
@@ -105,7 +108,25 @@ class AdminCT extends Controller
     }
 
     public function deleteCustomer($id){
-        Customer::find($id)->delete();
+       $customer = Customer::find($id);
+       $time = Time::find($customer->time_id);
+       $newSlot = $customer->amount + $time->slot;
+       $customer->delete();
+       $time->update([
+        'slot' => $newSlot,
+       ]);
+       $total_price = $this->moneyFormat($customer->total_price);
+       $details = [
+        'title' => 'Your data has rejected ):',
+        'name' => $customer->name,
+        'amount' => $customer->amount,
+        'total' => $total_price,
+        'invoice' => $customer->invoice,
+
+       ];
+
+       Mail::to($customer->email)->send(new AlertMail($details));
+
         Alert::success('Data Deleted!');
         return redirect('/admin'); 
     }
@@ -140,6 +161,30 @@ class AdminCT extends Controller
         }elseif(auth()->user()->role == 'admin'){
             return redirect('/admin');
         }
+    }
+
+    public function rejectedCustomer(Request $request){
+        if($request->ajax()){
+            $rejectedCustomers = Customer::withTrashed()->whereNotNull('deleted_at')->get();
+            return datatables()->of($rejectedCustomers)
+            ->addIndexColumn()
+            ->addColumn('date', function($rejectedCustomers){
+                return $rejectedCustomers->date->date;
+            })
+            ->addColumn('time', function($rejectedCustomers){
+                return $rejectedCustomers->time->time;
+            })
+            ->addColumn('total', function($rejectedCustomers){
+                return $this->moneyFormat($rejectedCustomers->total_price);
+            })
+            ->addColumn('file', function($rejectedCustomer){
+                return "<a href=".asset('/storage'.'/'.$rejectedCustomer->invoice)." target='_blank' rel='noopener noreferrer'>show</a>";
+            })
+            ->rawColumns(['date','time','total','file'])
+            ->make(true);
+        }
+
+        return view('admin.contents.rejectedCustomers');
     }
 
 

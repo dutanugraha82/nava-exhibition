@@ -31,10 +31,10 @@ class Customer extends Model
     protected $dates = ['deleted_at'];
 
     public function date(){
-        return $this->belongsTo(Schedule::class,'id');
+        return $this->belongsTo(Schedule::class,'schedule_id');
     }
 
     public function time(){
-        return $this->belongsTo(Time::class,'id');
+        return $this->belongsTo(Time::class,'time_id');
     }
 }

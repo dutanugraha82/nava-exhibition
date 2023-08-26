@@ -16,7 +16,7 @@ class SuperAdminCT extends Controller
         $grandTotal = DB::table('customer')->where('status','=',1)->sum('total_price');
         $earning = $this->moneyFormat($grandTotal);
         $approvedCustomers = DB::table('customer')->where('status','=',1)->count();
-        $pendingCustomers = DB::table('customer')->where('status','=',0)->count();
+        $pendingCustomers = DB::table('customer')->where('status','=',0)->where('deleted_at','=', NULL)->count();
         if ($request->ajax()) {
             $customer = Customer::where('status','=',0)->get();
             return datatables()->of($customer)

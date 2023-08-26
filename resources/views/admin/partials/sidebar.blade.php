@@ -29,12 +29,24 @@
             <span>Admin Users</span></a>
     </li>
     <hr class="sidebar-divider">
+    <li class="nav-item active">
+        <a class="nav-link" href="/superadmin/customers/rejected">
+            <i class="fas fa-fw fa-times"></i>
+            <span>Customer Rejected</span></a>
+    </li>
+    <hr class="sidebar-divider">
 
     @elseif(auth()->user()->role == 'admin')
     <li class="nav-item active">
         <a class="nav-link" href="/admin/customers/validated">
             <i class="fas fa-fw fa-check-square"></i>
             <span>Customer Validated</span></a>
+    </li>
+    <hr class="sidebar-divider">
+    <li class="nav-item active">
+        <a class="nav-link" href="/admin/customers/rejected">
+            <i class="fas fa-fw fa-times"></i>
+            <span>Customer Rejected</span></a>
     </li>
     <hr class="sidebar-divider">
     @endif

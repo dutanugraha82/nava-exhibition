@@ -70,7 +70,7 @@
             <table class="hover" id="customers">
                 <thead>
                     <tr>
-                        <th>Reg. Code</th>
+                        <th>No</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Date</th>
@@ -94,7 +94,7 @@
                serverSide: true,
                ajax: "{{ route('superadmin.dashboard') }}",
                columns: [
-                   {data: 'code', name: 'code'},
+                   {data: 'DT_RowIndex', name: 'no'},
                    {data: 'name', name: 'name'},
                    {data: 'email', name: 'email'},
                    {data: 'date', name: 'date'},
@@ -115,13 +115,13 @@
                serverSide: true,
                ajax: "{{ route('admin.dashboard') }}",
                columns: [
-                   {data: 'code', name: 'code'},
-                   {data: 'name', name: 'name'},
-                   {data: 'email', name: 'email'},
-                   {data: 'date', name: 'date'},
-                   {data: 'time', name: 'time'},
-                   {data: 'file', name: 'file'},
-                   {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'DT_RowIndex', name: 'no'},
+                    {data: 'name', name: 'name'},
+                    {data: 'email', name: 'email'},
+                    {data: 'date', name: 'date'},
+                    {data: 'time', name: 'time'},
+                    {data: 'file', name: 'file'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
                ]
            });
        });

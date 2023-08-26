@@ -59,9 +59,9 @@
                     </div>
                     <div class="row mb-4">
                         <div class="col-md-6 mb-3">
-                            <label for="">The Account Number (Nava account name)</label>
+                            <label for="">The Account Number ( ARIFIN | BNI )</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="norek" value="74125657" readonly>
+                                <input type="text" class="form-control" id="norek" value="1317613762" readonly>
                                 <button type="button" class="btn btn-outline-dark" id="save">Copy</button>
                             </div>
                             <div class="d-flex mt-4">
@@ -92,20 +92,4 @@
         $('#date').select2();
         });
     </script>
-    <script>
-        function imgPreview()
-       {
-           const image = document.querySelector('#image');
-           const imagePreview = document.querySelector('.img-preview');
-
-           imagePreview.style.display = 'block';
-
-           const oFReader = new FileReader();
-           oFReader.readAsDataURL(image.files[0]);
-
-           oFReader.onload = function(oFREvent){
-               imagePreview.src = oFREvent.target.result;
-           }
-       }
-   </script>
 @endpush

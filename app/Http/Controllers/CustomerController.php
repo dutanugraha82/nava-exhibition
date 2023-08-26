@@ -47,7 +47,7 @@ class CustomerController extends Controller
             'invoice' => 'image|required',
         ]);
 
-        $date = Schedule::find($id)->first();
+        $date = Schedule::find($id);
         // Check Date is weekend? 0 = weekday, 1 = weekend.
         if ($date->status == 0) {
             $total_price = $request->ticket * 85000;
