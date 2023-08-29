@@ -68,8 +68,14 @@ class CustomerController extends Controller
         }
             $newSlot = $time->slot - $request->ticket;
 
-            DB::beginTransaction();
+        return DB::transaction(function() use($request, $id, $total_price, $newSlot){
+               
             try {
+                 DB::beginTransaction();
+                Time::find($request->time)->update([
+                    'slot' => $newSlot,
+                ]);
+
                 DB::table('customer')->insert([
                 'schedule_id' => $id,
                 'time_id' => $request->time,
@@ -84,9 +90,6 @@ class CustomerController extends Controller
                 'created_at' => Carbon::now(),
             ]);
 
-                Time::find($request->time)->update([
-                    'slot' => $newSlot,
-                ]);
 
                 DB::commit();
 
@@ -103,9 +106,11 @@ class CustomerController extends Controller
 
             } catch (\Exception $e) {
                 DB::rollBack();
+                throw $e;
                 Alert::error('Failed Transaction!');
                 return back();
             }
+            }, 10);
 
             // Customer::insert([
             //     'schedule_id' => $id,

@@ -21,7 +21,7 @@
                                 <input type="text" name="email" class="form-control" required placeholder="example@gmail.com">
                             </div>
                             <div class="mb-3">
-                                <label for="phone">Phone <span class="text-danger">*</span></label>
+                                <label for="phone">Phone <span class="text-danger">*62xxxxx (without +)</span></label>
                                 <input type="text" name="phone" class="form-control" placeholder="62xxxxx (without +)" required>
                             </div>
                         </div>
