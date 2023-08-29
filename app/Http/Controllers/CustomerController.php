@@ -72,9 +72,9 @@ class CustomerController extends Controller
                
             try {
                  DB::beginTransaction();
-                Time::find($request->time)->update([
-                    'slot' => $newSlot,
-                ]);
+                    $slot = Time::lockForUpdate()->find($request->time);
+                    $slot->slot = $newSlot;
+                    $slot->save();
 
                 DB::table('customer')->insert([
                 'schedule_id' => $id,
