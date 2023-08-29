@@ -28,7 +28,7 @@ class Customer extends Model
         'updated_at'
     ];
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at','created_at'];
 
     public function date(){
         return $this->belongsTo(Schedule::class,'schedule_id');

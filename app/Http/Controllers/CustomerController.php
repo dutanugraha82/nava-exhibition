@@ -36,6 +36,8 @@ class CustomerController extends Controller
     }
 
     public function storeBooking(Request $request, $id){
+
+        // dd($request);
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
@@ -60,13 +62,15 @@ class CustomerController extends Controller
         $time = Time::find($request->time);
         // dd($time->slot);
         // Check available ticket
-        if ($time->slot < 1) {
-            Alert::error('Slot  not available');
+        if ($time->slot < $request->ticket) {
+            Alert::error('Out of Slot');
             return back();
-        }else {
+        }
             $newSlot = $time->slot - $request->ticket;
 
-            Customer::insert([
+            DB::beginTransaction();
+            try {
+                DB::table('customer')->insert([
                 'schedule_id' => $id,
                 'time_id' => $request->time,
                 'name' => $request->name,
@@ -79,21 +83,57 @@ class CustomerController extends Controller
                 'status' => 0,
                 'created_at' => Carbon::now(),
             ]);
+
+                Time::find($request->time)->update([
+                    'slot' => $newSlot,
+                ]);
+
+                DB::commit();
+
+                $rupiah = $this->moneyFormat($total_price);
+                $details = [
+                    'title' => 'Your booking has been received!',
+                    'name' => $request->name,
+                    'amount' => $request->ticket,
+                    'total' => $rupiah,
+                ];
+                Mail::to($request->email)->send(new NotificationMail($details));
+                Alert::success('Success!','Your Payment Under Validation, Please check your email periodically.');
+                return redirect('/');
+
+            } catch (\Exception $e) {
+                DB::rollBack();
+                Alert::error('Failed Transaction!');
+                return back();
+            }
+
+            // Customer::insert([
+            //     'schedule_id' => $id,
+            //     'time_id' => $request->time,
+            //     'name' => $request->name,
+            //     'email' => $request->email,
+            //     'sex' => $request->sex,
+            //     'shoes' => $request->size,
+            //     'amount' => $request->ticket,
+            //     'total_price' => $total_price,
+            //     'invoice' => $request->file('invoice')->store('payment-proof'),
+            //     'status' => 0,
+            //     'created_at' => Carbon::now(),
+            // ]);
     
-            Time::find($request->time)->update([
-                'slot' => $newSlot,
-            ]);
-            $rupiah = $this->moneyFormat($total_price);
-            $details = [
-                'title' => 'Your booking has been received!',
-                'name' => $request->name,
-                'amount' => $request->ticket,
-                'total' => $rupiah,
-            ];
-            Mail::to($request->email)->send(new NotificationMail($details));
-            Alert::success('Success!','Your Payment Under Validation, Please check your email periodically.');
-            return redirect('/');
-        }  
+            // Time::find($request->time)->update([
+            //     'slot' => $newSlot,
+            // ]);
+            // $rupiah = $this->moneyFormat($total_price);
+            // $details = [
+            //     'title' => 'Your booking has been received!',
+            //     'name' => $request->name,
+            //     'amount' => $request->ticket,
+            //     'total' => $rupiah,
+            // ];
+            // Mail::to($request->email)->send(new NotificationMail($details));
+            // Alert::success('Success!','Your Payment Under Validation, Please check your email periodically.');
+            // return redirect('/');
     }
 
     public function moneyFormat($total_price){
