@@ -358,6 +358,8 @@
                         <p>Time : {{ $details['time'] }}</p>
                         <p>Shoes : {{ $details['shoes'] }}</p>
                         <p>Total : Rp {{ $details['total'] }}</p>
+                        <b><p>PLEASE COME ON TIME, your ticket will be forfeited if it is past the hour ordered</p></b>
+                        <b><p>HARAP DATANG TEPAT WAKTU, tiket anda akan hangus jika melewati jam yang dipesan</p></b>
                         <small>{{ $details['footer'] }}</small>
                         <small>Nava Exhibition | Sangkuriang Tech &copy;2023</small>
                       </td>

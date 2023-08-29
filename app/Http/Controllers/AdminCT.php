@@ -77,7 +77,7 @@ class AdminCT extends Controller
             'time' => $data->time->time,
             'shoes' => $data->shoes,
             'total' => $total_price,
-            'footer' => "Please keep it secret! Your ticket can not be refund."
+            'footer' => "Please keep it secret!"
         ];
 
         Mail::to($data->email)->send(new SendTicket($details));
