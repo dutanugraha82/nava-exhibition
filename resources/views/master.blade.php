@@ -3,6 +3,9 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
+    <meta name="description" content="First Space Art exhibition in Karawang">
+    <meta name="keywords" content="nava exhibition, space art, nava, art exhibition, space art karawang">
+    <meta name="author" content="sangkuriang tech">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
@@ -38,13 +41,13 @@
             <div class="container fs-montserrat text-center text-white">
                 <p>NAVA Exhibition is Organized by Great A Creative</p>
                 <div class="d-flex justify-content-center mb-2">
-                    <a href="#">
+                    <a href="https://www.instagram.com/navaexhibition/">
                         <p class="text-white">Instagram |</p>
                     </a>
                     <a href="/faq">
                         <p class="text-white">&nbsp;FAQ |</p>
                     </a>
-                    <a href="#">
+                    <a href="https://wa.me/6285703485467">
                         <p class="text-white">&nbsp;Contact Us</p>
                     </a>
                 </div>

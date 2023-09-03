@@ -7,6 +7,7 @@ use App\Models\Time;
 use App\Models\User;
 use App\Mail\SendTicket;
 use App\Models\Customer;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -100,7 +101,10 @@ class AdminCT extends Controller
             ->addColumn('total', function($approvedCustomers){
                 return $this->moneyFormat($approvedCustomers->total_price);
             })
-            ->rawColumns(['date','time','total'])
+            ->addColumn('purchase_date', function($approvedCustomers){
+                return Carbon::parse($approvedCustomers->created_at)->format('d M Y');
+            })
+            ->rawColumns(['date','time','total','purchase_date'])
             ->make(true);
         }
 

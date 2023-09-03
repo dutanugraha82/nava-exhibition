@@ -9,7 +9,7 @@
                     <th>Reg.Code</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Sex</th>
+                    <th>Purchase Date</th>
                     <th>Date</th>
                     <th>Time</th>
                     <th>Amount</th>
@@ -32,7 +32,7 @@
                    {data: 'code', name: 'code'},
                    {data: 'name', name: 'name'},
                    {data: 'email', name: 'email'},
-                   {data: 'sex', name: 'sex'},
+                   {data: 'purchase_date', name: 'purchase_date'},
                    {data: 'date', name: 'date'},
                    {data: 'time', name: 'time'},
                    {data: 'amount', name: 'amount'},
@@ -54,7 +54,7 @@
                    {data: 'code', name: 'code'},
                    {data: 'name', name: 'name'},
                    {data: 'email', name: 'email'},
-                   {data: 'sex', name: 'sex'},
+                   {data: 'purchase_date', name: 'purchase_date'},
                    {data: 'date', name: 'date'},
                    {data: 'time', name: 'time'},
                    {data: 'amount', name: 'amount'},
