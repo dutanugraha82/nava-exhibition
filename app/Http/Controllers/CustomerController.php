@@ -49,6 +49,11 @@ class CustomerController extends Controller
             'invoice' => 'image|required',
         ]);
 
+        if ($request->email !== $request->validateEmail) {
+            Alert::error('Email not match!','Email tidak sesuai');
+           return back();
+        }
+
         $date = Schedule::find($id);
         // Check Date is weekend? 0 = weekday, 1 = weekend.
         if ($date->status == 0) {
