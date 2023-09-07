@@ -52,9 +52,9 @@ class CustomerController extends Controller
         $date = Schedule::find($id);
         // Check Date is weekend? 0 = weekday, 1 = weekend.
         if ($date->status == 0) {
-            $total_price = $request->ticket * 85000;
+            $total_price = $request->ticket * 105000;
         } elseif ($date->status == 1) {
-            $total_price = $request->ticket * 100000;
+            $total_price = $request->ticket * 120000;
         }
         // generate unique code
 

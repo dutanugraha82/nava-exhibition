@@ -35,8 +35,8 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="size">Size Shoes <span class="text-danger">*</span></label>
-                                <input type="text" name="size" class="form-control" placeholder="41 (example if more than 1 pair: 41, 42,...)"  required>
+                                <label for="size">Size Shoes <span class="text-danger">*(size available only 33-41)</span></label>
+                                <input type="text" name="size" class="form-control" placeholder="41 (example if more than 1 pair: 33, 41,...)"  required>
                             </div>
                             <div class="mb-3">
                                 <label for="ticket">Amount of Ticket <span class="text-danger">(max 10 tickets/data)*</span></label>

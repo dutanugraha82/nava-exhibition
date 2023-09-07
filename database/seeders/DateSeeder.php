@@ -15,47 +15,7 @@ class DateSeeder extends Seeder
     public function run()
     {
         $data = [
-                [
-                    'date' => 'Mon, 25 Sept 2023',
-                    'status' => 0,
-
-                ],
-                [
-                    'date' => 'Tue, 26 Sept 2023',
-                    'status' => 0,
-                ],
-                [
-                    'date' => 'Wed, 27 Sept 2023',
-                    'status' => 0,
-                ],
-                [
-                    'date' => 'Thu, 28 Sept 2023',
-                    'status' => 0,
-                ],
-                [
-                    'date' => 'Fri, 29 Sept 2023',
-                    'status' => 0,
-                ],
-                [
-                    'date' => 'Sat, 30 Sept 2023',
-                    'status' => 1,
-                ],
-                [
-                    'date' => 'Sun, 01 Oct 2023',
-                    'status' => 1,
-                ],
-                [
-                    'date' => 'Mon, 02 Oct 2023',
-                    'status' => 0,
-                ],
-                [
-                    'date' => 'Tue, 03 Oct 2023',
-                    'status' => 0,
-                ],
-                [
-                    'date' => 'Wed, 04 Oct 2023',
-                    'status' => 0,
-                ],
+                
                 [
                     'date' => 'Thu, 05 Oct 2023',
                     'status' => 0,
@@ -138,6 +98,110 @@ class DateSeeder extends Seeder
                 ],
                 [
                     'date' => 'Wed, 25 Oct 2023',
+                    'status' => 0,
+                ],
+                [
+                    'date' => 'Thu, 26 Oct 2023',
+                    'status' => 0,
+                ],
+                [
+                    'date' => 'Fri, 27 Oct 2023',
+                    'status' => 0,
+                ],
+                [
+                    'date' => 'Sat, 28 Oct 2023',
+                    'status' => 1,
+                ],
+                [
+                    'date' => 'Sun, 29 Oct 2023',
+                    'status' => 1,
+                ],
+                [
+                    'date' => 'Mon, 30 Oct 2023',
+                    'status' => 0,
+                ],
+                [
+                    'date' => 'Tue, 31 Oct 2023',
+                    'status' => 0,
+                ],
+                [
+                    'date' => 'Wed, 01 Nov 2023',
+                    'status' => 0,
+                ],
+                [
+                    'date' => 'Thu, 02 Nov 2023',
+                    'status' => 0,
+                ],
+                [
+                    'date' => 'Fri, 03 Nov 2023',
+                    'status' => 0,
+                ],
+                [
+                    'date' => 'Sat, 04 Nov 2023',
+                    'status' => 1,
+                ],
+                [
+                    'date' => 'Sun, 05 Nov 2023',
+                    'status' => 1,
+                ],
+                [
+                    'date' => 'Mon, 06 Nov 2023',
+                    'status' => 0,
+                ],
+                [
+                    'date' => 'Tue, 07 Nov 2023',
+                    'status' => 0,
+                ],
+                [
+                    'date' => 'Wed, 08 Nov 2023',
+                    'status' => 0,
+                ],
+                [
+                    'date' => 'Thu, 09 Nov 2023',
+                    'status' => 0,
+                ],
+                [
+                    'date' => 'Fri, 10 Nov 2023',
+                    'status' => 0,
+                ],
+                [
+                    'date' => 'Sat, 11 Nov 2023',
+                    'status' => 1,
+                ],
+                [
+                    'date' => 'Sun, 12 Nov 2023',
+                    'status' => 1,
+                ],
+                [
+                    'date' => 'Mon, 13 Nov 203',
+                    'status' => 0,
+                ],
+                [
+                    'date' => 'Tue, 14 Nov 2023',
+                    'status' => 0,
+                ],
+                [
+                    'date' => 'Wed, 15 Nov 2023',
+                    'status' => 0,
+                ],
+                [
+                    'date' => 'Thu, 16 Nov 2023',
+                    'status' => 0,
+                ],
+                [
+                    'date' => 'Fri, 17 Nov 2023',
+                    'status' => 0,
+                ],
+                [
+                    'date' => 'Sat, 18 Nov 2023',
+                    'status' => 1,
+                ],
+                [
+                    'date' => 'Sun, 19 Nov 2023',
+                    'status' => 1,
+                ],
+                [
+                    'date' => 'Mon, 20 Nov 2023',
                     'status' => 0,
                 ],
                 ];

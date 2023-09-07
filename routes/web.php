@@ -2,6 +2,7 @@
 
 use App\Models\Customer;
 use App\Http\Controllers\AdminCT;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuperAdminCT;
 use App\Http\Controllers\CustomerController;
