@@ -135,14 +135,14 @@ width: 22rem;
         <li class="fs-montserrat text-white">When does the exhibition start?</li>
     </ul>
     <p class="fs-montserrat text-white mx-1">
-        The NAVA Exhibition starts on 25th September 2023. 
+        The NAVA Exhibition starts on 05th October 2023. 
     </p>
 
     <ul class="pr-1 mt-4">
         <li class="fs-montserrat text-white">When does the exhibition end?</li>
     </ul>
     <p class="fs-montserrat text-white mx-1">
-        The NAVA Exhibition ends on 25th October, 2023. 
+        The NAVA Exhibition ends on 20th November, 2023. 
     </p>
 
     <ul class="pr-1 mt-4">

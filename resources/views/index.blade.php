@@ -31,7 +31,7 @@
     <img class="d-block mx-auto" src="{{ asset('img/banner-logo.png') }}" style="height: 160px;" alt="">
     <h2 class="fs-montserrat mt-3"><b>KARAWANG</b></h2>
     <p class="fs-montserrat mt-5"><b>Enjoy a new experience playing roller skating, now available in Karawang!</b></p>
-    <h4 class="fs-montserrat mt-3">Sep 25 - Oct 25, 2023</h4>
+    <h4 class="fs-montserrat mt-3">Oct 05 - Nov 20, 2023</h4>
     <a class="btn btn-outline-light fs-montserrat rounded-pill py-2 px-5" style="margin-top: 90px"  href="/booking"><b>BOOK TICKET NOW!</b></a>
 </div>
 <a class="text-center d-block mx-auto text-white mt-4" style="font-size: 3em;" href="#content"><i class="bi bi-arrow-down-circle"></i></a>
