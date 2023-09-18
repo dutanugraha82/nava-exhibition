@@ -13,7 +13,7 @@ amountTicket.addEventListener("input", function(){
 amountTicket.addEventListener("input", function(){
     var amount  = parseInt(amountTicket.value);
     if (weekend.value == "1") {
-        var totalPrice = amount * 120000;
+        var totalPrice = amount * 125000;
     } else if( weekend.value == "0"){
         var totalPrice = amount * 105000; 
     }

@@ -51,6 +51,9 @@
                         <p class="text-white">&nbsp;Contact Us</p>
                     </a>
                 </div>
+                <div class="text-center p-3">
+                  <small>Made By: <a href="https://dutanugraha82.github.io/">Sangkuriang Tech</a></small>
+                </div>
             </div>
         </footer>
     <!-- Optional JavaScript; choose one of the two! -->

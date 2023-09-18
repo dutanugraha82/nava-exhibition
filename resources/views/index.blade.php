@@ -56,7 +56,7 @@
     </div>
 </div>
 
-<div class="container fs-montserrat text-center text-white" style="height:50vh; margin-bottom:200px">
+<div class="container fs-montserrat text-center text-white" style="height:50vh; margin-bottom:250px">
     <h3 style="margin-top:150px;"><b>Exhibition Address</b></h3>
     <h5 class="mt-5"><b>Gramedia World Karawang</b></h5>
     <h5><b>(3rd floor)</b></h5>
@@ -64,5 +64,9 @@
     <h5 class="mt-5"><b>Hour</b></h5>
     <p style="font-size: 1.4em">Monday - Sunday</p>
     <p style="font-size: 1.4em">10AM - 8PM</p>
+    <h5 class="mt-5"><b>Price</b></h5>
+    <p style="font-size: 1.4em">Weekday : Rp 105,000/ticket</p>
+    <p style="font-size: 1.4em">Weekend : Rp 125,000/ticket</p>
+
 </div>
 @endsection

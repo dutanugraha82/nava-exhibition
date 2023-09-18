@@ -59,9 +59,9 @@ class CustomerController extends Controller
         if ($date->status == 0) {
             $total_price = $request->ticket * 105000;
         } elseif ($date->status == 1) {
-            $total_price = $request->ticket * 120000;
+            $total_price = $request->ticket * 125000;
         }
-        // generate unique code
+        // dd($request);
 
         // get time
         $time = Time::find($request->time);
