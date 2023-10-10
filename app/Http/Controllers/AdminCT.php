@@ -89,7 +89,7 @@ class AdminCT extends Controller
     public function approvedCustomers(Request $request){
         
         if($request->ajax()){
-            $approvedCustomers = Customer::where('status','=',1)->get();
+            $approvedCustomers = Customer::where('status','=',1)->orderBy('id', 'desc')->get();
             return datatables()->of($approvedCustomers)
             ->addIndexColumn()
             ->addColumn('date', function($approvedCustomers){
