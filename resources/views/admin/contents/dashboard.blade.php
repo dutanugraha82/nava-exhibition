@@ -75,6 +75,7 @@
                         <th>Email</th>
                         <th>Date</th>
                         <th>Time</th>
+                        <th>Amount</th>
                         <th>Invoice</th>
                         <th>Action</th>
                     </tr>
@@ -99,6 +100,7 @@
                    {data: 'email', name: 'email'},
                    {data: 'date', name: 'date'},
                    {data: 'time', name: 'time'},
+                   {data: 'amount', name: 'amount'},
                    {data: 'file', name: 'file'},
                    {data: 'action', name: 'action', orderable: false, searchable: false},
                ]
