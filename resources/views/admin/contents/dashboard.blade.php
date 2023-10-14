@@ -117,13 +117,14 @@
                serverSide: true,
                ajax: "{{ route('admin.dashboard') }}",
                columns: [
-                    {data: 'DT_RowIndex', name: 'no'},
-                    {data: 'name', name: 'name'},
-                    {data: 'email', name: 'email'},
-                    {data: 'date', name: 'date'},
-                    {data: 'time', name: 'time'},
-                    {data: 'file', name: 'file'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'DT_RowIndex', name: 'no'},
+                   {data: 'name', name: 'name'},
+                   {data: 'email', name: 'email'},
+                   {data: 'date', name: 'date'},
+                   {data: 'time', name: 'time'},
+                   {data: 'amount', name: 'amount'},
+                   {data: 'file', name: 'file'},
+                   {data: 'action', name: 'action', orderable: false, searchable: false},
                ]
            });
        });
