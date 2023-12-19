@@ -6,6 +6,7 @@ use App\Mail\NotificationMail;
 use App\Models\Customer;
 use Carbon\Carbon;
 use App\Models\Schedule;
+use App\Models\Tickets;
 use App\Models\Time;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -15,24 +16,106 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class CustomerController extends Controller
 {
-    public function bookDate(){
-        $date = DB::table('schedule')->get();
-        return view('users.booking-date', compact('date'));
+    
+
+    public function ticket($id){
+        $ticket = Tickets::find($id);
+        if ($ticket->slot < 1 || $ticket->status == "0") {
+            Alert::error("Tiket tidak tersedia");
+            return back();
+        } else {
+            return view('users.order', compact('ticket'));
+        }
+        
     }
 
-    public function bookDatePost(Request $request){
+    public function ticketKeep(Request $request, $id){
+        $ticket = Tickets::find($id);
+        if ($ticket->slot < 1 || $ticket->status == "0") {
+            Alert::error("Tiket tidak tersedia");
+            return back();
+        } else {
+            if ($request->email != $request->validateEmail) {
+                Alert::error('Email Tidak Sama');
+                return back();
+            }else{
+                $newSlot = $ticket->slot - $request->jumlah_tiket;
+                $total_harga = (int)$ticket->harga * $request->jumlah_tiket;
+                $kode_registrasi = Str::orderedUuid();
+                $link = "https://delunamusicfest.com/tickets/".$kode_registrasi."/payment";
+                // dd($kode_registrasi);
+                return DB::transaction(function() use($request, $id, $total_harga, $newSlot, $kode_registrasi, $link){
+                
+                    try {
+                         DB::beginTransaction();
+                            $slot = Tickets::lockForUpdate()->find($id);
+                            $slot->slot = $newSlot;
+                            $slot->save();
+        
+                        DB::table('customer')->insert([
+                        'kode_registrasi' => $kode_registrasi,
+                        'name' => $request->nama,
+                        'nohp' => $request->nohp,
+                        'email' => $request->email,
+                        'sex' => $request->sex,
+                        'jumlah_tiket' => $request->jumlah_tiket,
+                        'total_harga' => $total_harga,
+                        'status_validasi' => "0",
+                        'status_tiket' => "0",
+                        'ticket_id' => $id,
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
+                    ]);
+        
+        
+                        DB::commit();
+        
+                        $rupiah = $this->moneyFormat($total_harga);
+                        $details = [
+                            'title' => 'Your booking has been received!',
+                            'name' => $request->nama,
+                            'amount' => $request->jumlah_tiket,
+                            'total' => $rupiah,
+                            'link' => $link,
+                        ];
+                        Mail::to($request->email)->send(new NotificationMail($details));
+                        Alert::success('Berhasil!','Silahkan cek email untuk verifikasi selanjutnya');
+                        return redirect('/');
+        
+                    } catch (\Exception $e) {
+                        DB::rollBack();
+                        throw $e;
+                        Alert::error('Failed Transaction!');
+                        return back();
+                    }
+                    }, 10);
+            }
+        }
+    }
+
+    public function payment($uuid){
+        $data = Customer::where('kode_registrasi', $uuid)->first();
+        $total_harga = $this->moneyFormat($data->total_harga);
+        // dd($total_harga);
+        return view('users.order-request', compact('data', 'total_harga'));
+    }
+
+    public function paymentStore(Request $request, $uuid){
+        $data = Customer::where('kode_registrasi', $uuid)->first();
+
         $request->validate([
-            'date' => 'required',
+            'invoice' => 'required|image',
         ]);
 
-        return redirect('/booking'.'/'.$request->date);
-    }
+        Customer::find($data->id)->update([
+            'invoice' => $request->file('invoice')->store('payment-proof'),
+        ]);
 
-    public function booking($id){
+        Alert::success('Berhasil!', 'Tunggu email selanjutnya untuk mendapatkan E-Ticket');
+        return redirect('/');
+
         
-        $time = DB::table('time')->where('schedule_id',$id)->where('slot','>',0)->get();
-        $date = Schedule::find($id);
-        return view('users.booking', compact('time','date'));
+
     }
 
     public function storeBooking(Request $request, $id){
@@ -146,7 +229,7 @@ class CustomerController extends Controller
             // return redirect('/');
     }
 
-    public function moneyFormat($total_price){
-        return 'Rp ' . number_format($total_price, 2);
+    public function moneyFormat($total_harga){
+        return 'Rp ' . number_format($total_harga, 2);
     }
 }

@@ -71,11 +71,11 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Name</th>
+                        <th>Nama</th>
                         <th>Email</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Amount</th>
+                        <th>Jenis</th>
+                        <th>Tiket</th>
+                        <th>Total</th>
                         <th>Invoice</th>
                         <th>Action</th>
                     </tr>
@@ -98,9 +98,9 @@
                    {data: 'DT_RowIndex', name: 'no'},
                    {data: 'name', name: 'name'},
                    {data: 'email', name: 'email'},
-                   {data: 'date', name: 'date'},
-                   {data: 'time', name: 'time'},
-                   {data: 'amount', name: 'amount'},
+                   {data: 'jenis', name: 'jenis'},
+                   {data: 'jumlah_tiket', name: 'jumlah_tiket'},
+                   {data: 'total_harga', name: 'total_harga'},
                    {data: 'file', name: 'file'},
                    {data: 'action', name: 'action', orderable: false, searchable: false},
                ]
@@ -120,9 +120,9 @@
                 {data: 'DT_RowIndex', name: 'no'},
                    {data: 'name', name: 'name'},
                    {data: 'email', name: 'email'},
-                   {data: 'date', name: 'date'},
-                   {data: 'time', name: 'time'},
-                   {data: 'amount', name: 'amount'},
+                   {data: 'jenis', name: 'jenis'},
+                   {data: 'jumlah_tiket', name: 'jumlah_tiket'},
+                   {data: 'total_harga', name: 'total_harga'},
                    {data: 'file', name: 'file'},
                    {data: 'action', name: 'action', orderable: false, searchable: false},
                ]

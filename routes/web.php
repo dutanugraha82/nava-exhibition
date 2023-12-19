@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuperAdminCT;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\HomeCT;
+use App\Http\Controllers\TicketCT;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +20,7 @@ use App\Http\Controllers\CustomerController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [HomeCT::class,'index']);
 
 Route::get('/faq', function(){
     return view('faq');
@@ -30,33 +30,43 @@ Route::get('/faq', function(){
 //     return view('admin.contents.dashboard');
 // });
 
-// Route::get('/login', [AdminCT::class,'login'])->name('login');
-// Route::post('/login',[AdminCT::class,'authenticate']);
-// Route::post('/logout',[AdminCT::class,'logout'])->middleware('auth');
+Route::get('/login', [AdminCT::class,'login'])->name('login');
+Route::post('/login',[AdminCT::class,'authenticate']);
+Route::post('/logout',[AdminCT::class,'logout'])->middleware('auth');
 // Superadmin Route
-// Route::middleware(['auth','superadmin','preventBack'])->prefix('/superadmin')->group(function(){
-//     Route::get('/', [SuperAdminCT::class,'index'])->name('superadmin.dashboard');
-//     Route::get('/admin-users', [SuperAdminCT::class,'adminUsers']);
-//     Route::post('/admin-users/create', [SuperAdminCT::class,'storeAdminUsers']);
-//     Route::get('/customers/rejected',[AdminCT::class,'rejectedCustomer'])->name('superadmin.rejectedCustomers');
-// });
+Route::middleware(['auth','superadmin','preventBack'])->prefix('/superadmin')->group(function(){
+    Route::get('/', [SuperAdminCT::class,'index'])->name('superadmin.dashboard');
+    Route::get('/admin-users', [SuperAdminCT::class,'adminUsers']);
+    Route::post('/admin-users/create', [SuperAdminCT::class,'storeAdminUsers']);
+    Route::get('/customers/rejected',[AdminCT::class,'rejectedCustomer'])->name('superadmin.rejectedCustomers');
+
+    Route::get('/tickets', [TicketCT::class,'index']);
+    Route::post('/tickets/create', [TicketCT::class,'store']);
+    Route::get('/tickets/edit/{id}', [TicketCT::class,'edit']);
+    Route::put('/tickets/{id}/update', [TicketCT::class,'update']);
+    Route::delete('/tickets/{id}/delete', [TicketCT::class,'destroy']);
+
+    Route::put('/tickets/{id}/activate', [TicketCT::class,'activate']);
+    Route::put('/tickets/{id}/unactivate', [TicketCT::class,'unactivate']); 
+});
 // Route End
 
 // Admin Route
-// Route::middleware(['auth','admin','preventBack'])->prefix('/admin')->group(function(){
-//     Route::get('/',[AdminCT::class,'index'])->name('admin.dashboard');
-//     Route::put('/customer/{id}',[AdminCT::class,'validateCustomer']);
-//     Route::get('/customers/validated',[AdminCT::class,'approvedCustomers'])->name('admin.approvedCustomers');
-//     Route::delete('/customer/{id}',[AdminCT::class,'deleteCustomer']);
-//     Route::get('/customers/rejected',[AdminCT::class,'rejectedCustomer'])->name('admin.rejectedCustomers');
-// });
+Route::middleware(['auth','admin','preventBack'])->prefix('/admin')->group(function(){
+    Route::get('/',[AdminCT::class,'index'])->name('admin.dashboard');
+    Route::put('/customer/{id}',[AdminCT::class,'validateCustomer']);
+    Route::get('/customers/validated',[AdminCT::class,'approvedCustomers'])->name('admin.approvedCustomers');
+    Route::delete('/customer/{id}',[AdminCT::class,'deleteCustomer']);
+    Route::get('/customers/rejected',[AdminCT::class,'rejectedCustomer'])->name('admin.rejectedCustomers');
+});
 // Route End
 
-// Route::middleware(['auth','preventBack'])->group(function(){
-//     Route::get('/profiles/edit',[AdminCT::class,'editProfile']);
-//     Route::put('/profiles/{id}',[AdminCT::class,'updateProfile']);
-// });
-// Route::get('/booking', [CustomerController::class,'bookDate']);
-// Route::post('/booking', [CustomerController::class,'bookDatePost']);
-// Route::get('/booking/{id}', [CustomerController::class,'booking']);
-// Route::post('/booking-store/{id}', [CustomerController::class,'storeBooking']);
+Route::middleware(['auth','preventBack'])->group(function(){
+    Route::get('/profiles/edit',[AdminCT::class,'editProfile']);
+    Route::put('/profiles/{id}',[AdminCT::class,'updateProfile']);
+});
+
+Route::get('/tickets/{id}', [CustomerController::class, 'ticket']);
+Route::post('/tickets/{id}/order', [CustomerController::class, 'ticketKeep']);
+Route::get('/tickets/{uuid}/payment',[CustomerController::class, 'payment']);
+Route::post('/tickets/{uuid}/payment/store',[CustomerController::class, 'paymentStore']);

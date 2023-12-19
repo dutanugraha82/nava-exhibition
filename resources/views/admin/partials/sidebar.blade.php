@@ -36,6 +36,12 @@
     </li>
     <hr class="sidebar-divider">
 
+    <li class="nav-item active">
+        <a class="nav-link" href="/superadmin/tickets">
+            <i class="fa fa-ticket-alt"></i>
+            <span>Ticket</span></a>
+    </li>
+
     @elseif(auth()->user()->role == 'admin')
     <li class="nav-item active">
         <a class="nav-link" href="/admin/customers/validated">

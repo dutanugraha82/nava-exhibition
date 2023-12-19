@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Nava Exhibition Ticket</title>
+    <title>De Luna Music Festival 2024</title>
     <style>
       /* -------------------------------------
           GLOBAL RESETS
@@ -353,9 +353,10 @@
                         <p>Name : {{ $details['name']}}</p>
                         <p>Amount of ticket : {{ $details['amount'] }}</p>
                         <p>Total : {{ $details['total'] }}</p>
-                        <p>Your ticket will be validate under less than 24 hours, we will send your ticket to this email. Don't be shy to contact us if your ticket is not coming more than 24 hours. (;</p>
-                        <a href="https://wa.me/6285703485467"><p>Contact Us!</p></a>
-                        <small>Nava Exhibition | Sangkuriang Tech &copy;2023</small>
+                        <p>Silahkan untuk melanjutkan ke pembayaran kurang dari 24 Jam di link berikut:</p>
+                        <br>
+                        <a href="{{ $details['link'] }}">Klik untuk Pembayaran</a>
+                        <small>Greate A Creative | Sangkuriang Tech &copy;2024</small>
                       </td>
                     </tr>
                   </table>

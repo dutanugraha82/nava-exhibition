@@ -12,28 +12,28 @@ use RealRashid\SweetAlert\Facades\Alert;
 class SuperAdminCT extends Controller
 {
     public function index(Request $request){
-        $ticket = DB::table('customer')->where('status','=',1)->sum('amount');
-        $grandTotal = DB::table('customer')->where('status','=',1)->sum('total_price');
+        $ticket = DB::table('customer')->where('status_validasi','=',"1")->sum('jumlah_tiket');
+        $grandTotal = DB::table('customer')->where('status_validasi','=',"1")->sum('total_harga');
         $earning = $this->moneyFormat($grandTotal);
-        $approvedCustomers = DB::table('customer')->where('status','=',1)->count();
-        $pendingCustomers = DB::table('customer')->where('status','=',0)->where('deleted_at','=', NULL)->count();
+        $approvedCustomers = DB::table('customer')->where('status_validasi','=',"1")->count();
+        $pendingCustomers = DB::table('customer')->where('status_validasi','=',"0")->where('deleted_at','=', NULL)->count();
         if ($request->ajax()) {
-            $customer = Customer::where('status','=',0)->get();
+            $customer = Customer::where('status_validasi','=',"0")->where('invoice','!=', NULL)->get();
             return datatables()->of($customer)
             ->addIndexColumn()
             ->addColumn('action', function(){
                 return 'only Admin';
             })
             ->addColumn('file', function($customer){
-                return "<a href=".asset('/storage'.'/'.$customer->invoice)." target='_blank' rel='noopener noreferrer'>show</a>";
+                return "<a href=".asset('storage'.'/'.$customer->invoice)." target='_blank' rel='noopener noreferrer'>show</a>";
             })
-            ->addColumn('date', function($customer){
-                return $customer->date->date;
+            ->addColumn('total_harga', function($customer){
+                return $this->moneyFormat($customer->total_harga);
             })
-            ->addColumn('time', function($customer){
-                return $customer->time->time;
+            ->addColumn('jenis', function($customer){
+                return $customer->ticket->nama;
             })
-            ->rawColumns(['action','file','date','time'])
+            ->rawColumns(['action','file','total_harga','jenis'])
             ->make(true);
         }
         return view('admin.contents.dashboard', compact('ticket','approvedCustomers','pendingCustomers','earning'));

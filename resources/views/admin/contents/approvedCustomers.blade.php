@@ -6,14 +6,14 @@
         <table class="hover" id="approvedCustomers">
             <thead>
                 <tr>
-                    <th>Reg.Code</th>
-                    <th>Name</th>
+                    <th>kode tiket</th>
+                    <th>Nama</th>
                     <th>Email</th>
-                    <th>Purchase Date</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Amount</th>
-                    <th>Total Price</th>
+                    <th>Jenis</th>
+                    <th>Tiket</th>
+                    <th>Total</th>
+                    <th>Transaksi</th>
+                    <th>Divalidasi</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -29,14 +29,14 @@
                serverSide: true,
                ajax: "{{ route('superadmin.approvedCustomers') }}",
                columns: [
-                   {data: 'code', name: 'code'},
+                   {data: 'kode_tiket', name: 'kode_tiket'},
                    {data: 'name', name: 'name'},
                    {data: 'email', name: 'email'},
-                   {data: 'purchase_date', name: 'purchase_date'},
-                   {data: 'date', name: 'date'},
-                   {data: 'time', name: 'time'},
-                   {data: 'amount', name: 'amount'},
+                   {data: 'jenis_tiket', name: 'jenis_tiket'},
+                   {data: 'jumlah_tiket', name: 'jumlah_tiket'},
                    {data: 'total', name: 'total'},
+                   {data: 'purchase_date', name: 'purchase_date'},
+                   {data: 'admin', name: 'admin'},
                ]
            });
        });
@@ -51,14 +51,14 @@
                serverSide: true,
                ajax: "{{ route('admin.approvedCustomers') }}",
                columns: [
-                   {data: 'code', name: 'code'},
+                    {data: 'kode_tiket', name: 'kode_tiket'},
                    {data: 'name', name: 'name'},
                    {data: 'email', name: 'email'},
-                   {data: 'purchase_date', name: 'purchase_date'},
-                   {data: 'date', name: 'date'},
-                   {data: 'time', name: 'time'},
-                   {data: 'amount', name: 'amount'},
+                   {data: 'jenis_tiket', name: 'jenis_tiket'},
+                   {data: 'jumlah_tiket', name: 'jumlah_tiket'},
                    {data: 'total', name: 'total'},
+                   {data: 'purchase_date', name: 'purchase_date'},
+                   {data: 'admin', name: 'admin'},
                ]
            });
        });

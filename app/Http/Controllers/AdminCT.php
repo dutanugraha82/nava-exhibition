@@ -7,6 +7,7 @@ use App\Models\Time;
 use App\Models\User;
 use App\Mail\SendTicket;
 use App\Models\Customer;
+use App\Models\Tickets;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -20,14 +21,14 @@ class AdminCT extends Controller
 {
     public function index(Request $request){
 
-        $ticket = DB::table('customer')->where('status','=',1)->sum('amount');
-        $grandTotal = DB::table('customer')->where('status','=',1)->sum('total_price');
+        $ticket = DB::table('customer')->where('status_validasi','=',"1")->sum('jumlah_tiket');
+        $grandTotal = DB::table('customer')->where('status_validasi','=',"1")->sum('total_harga');
         $earning = $this->moneyFormat($grandTotal);
-        $approvedCustomers = DB::table('customer')->where('status','=',1)->count();
-        $pendingCustomers = DB::table('customer')->where('status','=',0)->where('deleted_at','=', NULL)->count();
+        $approvedCustomers = DB::table('customer')->where('status_validasi','=',"1")->count();
+        $pendingCustomers = DB::table('customer')->where('status_validasi','=',"0")->where('deleted_at','=', NULL)->count();
 
             if ($request->ajax()) {
-                $customer = Customer::where('status','=',0)->orderBy('created_at')->get();
+                $customer = Customer::where('status_validasi','=',"0")->orderBy('created_at')->get();
             return datatables()->of($customer)
             ->addIndexColumn()
             ->addColumn('action', function($customer){
@@ -44,16 +45,17 @@ class AdminCT extends Controller
                         </form>
                         </div>';
             })
-            ->addColumn('date', function($customer){
-                return $customer->date->date;
-            })
-            ->addColumn('time', function($customer){
-                return $customer->time->time;
-            })
+            
             ->addColumn('file', function($customer){
                 return "<a href=".asset('/storage'.'/'.$customer->invoice)." target='_blank' rel='noopener noreferrer'>show</a>";
             })
-            ->rawColumns(['action','file','date','time'])
+            ->addColumn('total_harga', function($customer){
+                return $this->moneyFormat($customer->total_harga);
+            })
+            ->addColumn('jenis', function($customer){
+                return $customer->ticket->nama;
+            })
+            ->rawColumns(['action','file', 'total_harga', 'jenis'])
             ->make(true);
         }
 
@@ -63,25 +65,27 @@ class AdminCT extends Controller
     public function validateCustomer($id){
         $code = Str::random(6);
         $data =  Customer::find($id);
-        $total_price = $this->moneyFormat($data->total_price);
+        $total_price = $this->moneyFormat($data->total_harga);
         $data->update([
-            'code' => $code,
-            'status' => 1,
+            'kode_tiket' => $code,
+            'status_validasi' => "1",
+            'status_tiket' => "1",
+            'users_id' => auth()->user()->id,
         ]);
         
-        $details = [
-            'title' => "Welcome to Nava Exhibition!",
-            'body' => $data->name,
-            'amount' => $data->amount,
-            'code' => $code,
-            'date' => $data->date->date,
-            'time' => $data->time->time,
-            'shoes' => $data->shoes,
-            'total' => $total_price,
-            'footer' => "Please keep it secret!"
-        ];
+        // $details = [
+        //     'title' => "Welcome to Nava Exhibition!",
+        //     'body' => $data->name,
+        //     'amount' => $data->amount,
+        //     'code' => $code,
+        //     'date' => $data->date->date,
+        //     'time' => $data->time->time,
+        //     'shoes' => $data->shoes,
+        //     'total' => $total_price,
+        //     'footer' => "Please keep it secret!"
+        // ];
 
-        Mail::to($data->email)->send(new SendTicket($details));
+        // Mail::to($data->email)->send(new SendTicket($details));
         Alert::success('Customer Validated!');
         return redirect('/admin');
     }
@@ -89,22 +93,22 @@ class AdminCT extends Controller
     public function approvedCustomers(Request $request){
         
         if($request->ajax()){
-            $approvedCustomers = Customer::where('status','=',1)->orderBy('id', 'desc')->get();
+            $approvedCustomers = Customer::where('status_validasi','=',"1")->orderBy('id', 'desc')->get();
             return datatables()->of($approvedCustomers)
             ->addIndexColumn()
-            ->addColumn('date', function($approvedCustomers){
-                return $approvedCustomers->date->date;
-            })
-            ->addColumn('time', function($approvedCustomers){
-                return $approvedCustomers->time->time;
-            })
             ->addColumn('total', function($approvedCustomers){
-                return $this->moneyFormat($approvedCustomers->total_price);
+                return $this->moneyFormat($approvedCustomers->total_harga);
             })
             ->addColumn('purchase_date', function($approvedCustomers){
                 return Carbon::parse($approvedCustomers->created_at)->format('d M Y');
             })
-            ->rawColumns(['date','time','total','purchase_date'])
+            ->addColumn('jenis_tiket', function($approvedCustomers){
+                return $approvedCustomers->ticket->nama;
+            })
+            ->addColumn('admin', function($approvedCustomers){
+                return $approvedCustomers->admin->name;
+            })
+            ->rawColumns(['total','purchase_date','jenis_tiket', 'admin'])
             ->make(true);
         }
 
@@ -113,23 +117,23 @@ class AdminCT extends Controller
 
     public function deleteCustomer($id){
        $customer = Customer::find($id);
-       $time = Time::find($customer->time_id);
-       $newSlot = $customer->amount + $time->slot;
+       $tiket = Tickets::find($customer->ticket_id);
+       $newSlot = $customer->jumlah_tiket + $tiket->slot;
        $customer->delete();
-       $time->update([
+       $tiket->update([
         'slot' => $newSlot,
        ]);
-       $total_price = $this->moneyFormat($customer->total_price);
-       $details = [
-        'title' => 'Your data has rejected ):',
-        'name' => $customer->name,
-        'amount' => $customer->amount,
-        'total' => $total_price,
-        'invoice' => $customer->invoice,
+    //    $total_price = $this->moneyFormat($customer->total_price);
+    //    $details = [
+    //     'title' => 'Your data has rejected ):',
+    //     'name' => $customer->name,
+    //     'amount' => $customer->amount,
+    //     'total' => $total_price,
+    //     'invoice' => $customer->invoice,
 
-       ];
+    //    ];
 
-       Mail::to($customer->email)->send(new AlertMail($details));
+    //    Mail::to($customer->email)->send(new AlertMail($details));
 
         Alert::success('Data Deleted!');
         return redirect('/admin'); 

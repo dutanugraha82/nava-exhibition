@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Balsamiq Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit">
     <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon.ico') }}">
     <title>@yield('page-title')</title>
   </head>
@@ -21,39 +22,86 @@
         scroll-behavior: smooth;
     }
     .fs-montserrat{
-        font-family: 'Montserrat';
+        font-family: 'Balsamiq Sans';
+    }
+    .fs-head{
+      font-family: 'Kanit';
+      font-weight: 800;
+    }
+    #btn-ticket:hover{
+            background-color: white;
+            color: black;
     }
   </style>
   @stack('css')
-  <body style="background-color: #070d3d">
+  <body style="background-color: #d5737d">
     @include('sweetalert::alert')
-      <nav class="navbar navbar-dark fixed-top p-2" style="background-color: #070d3d">
-            <div class="container">
-            <a class="navbar-brand" href="/">
-            <img src="{{ asset('img/logo-navy.jpg') }}" width="150" height="60" class="d-inline-block align-top" alt="">
-            </a>
+      <nav class="navbar navbar-expand-lg fixed-top navbar-dark p-3" style="background-color: #d5737d">
+        <div class="container mt-2">
+          <a class="navbar-brand fs-head" href="#">DE LUNA</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Tickets</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Maps</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+          </ul>
         </div>
-        </nav>
+        </div>
+      </nav>
 
         @yield('content')
 
-        <footer>
-            <div class="container fs-montserrat text-center text-white">
-                <p>NAVA Exhibition is Organized by Great A Creative</p>
-                <div class="d-flex justify-content-center mb-2">
-                    <a href="https://www.instagram.com/navaexhibition/">
-                        <p class="text-white">Instagram |</p>
+        <footer style="height:25vh;background-color: #6360e1; padding: 10px">
+            <div class="container fs-montserrat text-center text-white mt-3">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="d-flex"> 
+                    <h5 class="fs-head">DE LUNA</h5>
+                    <small>&copy;2024</small>
+                  </div>
+                  
+                  <div class="d-flex mb-2">
+                    <a  href="https://www.instagram.com/deluna.land2024/">
+                        <i class="bi bi-instagram text-white pr-3" style="font-size: 1.8em;"></i>
                     </a>
-                    <a href="/faq">
-                        <p class="text-white">&nbsp;FAQ |</p>
+                    <a  href="#">
+                        <i class="bi bi-facebook text-white p-3" style="font-size: 1.8em;"></i>
+                    </a>
+                    <a  href="#">
+                        <i class="bi bi-twitter text-white p-3" style="font-size: 1.8em;"></i>
                     </a>
                     <a href="https://wa.me/6285703485467">
-                        <p class="text-white">&nbsp;Contact Us</p>
+                      <i class="bi bi-whatsapp text-white p-3" style="font-size: 1.8em;"></i>
                     </a>
                 </div>
-                <div class="text-center p-3">
-                  <small>Made By: <a href="https://dutanugraha82.github.io/">Sangkuriang Tech</a></small>
+                <div class="d-flex">
+                  <small>Created&Produced By: </small>
+                    <p class="fs-montserrat">&nbsp;Great A Creative</p>
                 </div>
+                </div>
+                
+                <div class="col-md-6">
+                  <div class=" text-right">
+
+                    <a href="/faq" class="text-white text-left text-md-right">
+                      <p class="fs-head">Privacy Policy</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
         </footer>
     <!-- Optional JavaScript; choose one of the two! -->

@@ -13,28 +13,30 @@ class Customer extends Model
     protected $table = 'customer';
     protected $fillable = [
         'id',
-        'schedule_id',
-        'time_id',
-        'code',
+        'kode_registrasi',
+        'nohp',
+        'kode_tiket',
         'name',
         'email',
         'sex',
-        'shoes',
-        'amount',
-        'total_price',
+        'jumlah_tiket',
+        'total_harga',
         'invoice',
-        'status',
+        'status_validasi',
+        'status_tiket',
+        'users_id',
+        'ticket_id',
         'created_at',
         'updated_at'
     ];
 
     protected $dates = ['deleted_at','created_at'];
 
-    public function date(){
-        return $this->belongsTo(Schedule::class,'schedule_id');
+    public function ticket(){
+        return $this->belongsTo(Tickets::class);
     }
 
-    public function time(){
-        return $this->belongsTo(Time::class,'time_id');
+    public function admin(){
+        return $this->belongsTo(User::class, 'users_id','id');
     }
 }

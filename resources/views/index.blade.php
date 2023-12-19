@@ -1,72 +1,88 @@
 @extends('master')
 @push('css')
-    <style>
-        .banner{
-        height: 95vh;
-        background-image: url("/img/banner.jpg");
-        background-position: center;
-        mix-blend-mode: lighten;
-        opacity: 0.4;
-        background-size: cover;
-        filter: saturate(200%);
-    }
-
-    .banner-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    }
-    </style>
 @endpush
 @section('page-title')
-    Nava Exhibition
+    De Luna Music Fest
 @endsection
 @section('content')
-<div class="banner" style="margin-top: 5rem;">
-</div>
-<div class="banner-content" style="position: absolute; top: 58%; left: 50%; transform: translate(-50%, -50%);">
-    <img class="d-block mx-auto" src="{{ asset('img/banner-logo.png') }}" style="height: 160px;" alt="">
-    <h2 class="fs-montserrat mt-3"><b>KARAWANG</b></h2>
-    <p class="fs-montserrat mt-5"><b>Enjoy a new experience playing roller skating, now available in Karawang!</b></p>
-    <h4 class="fs-montserrat mt-3">Oct 05 - Nov 20, 2023</h4>
-    <a class="btn btn-outline-light fs-montserrat rounded-pill py-2 px-5" style="margin-top: 90px"  href="#"><b>See You Next Event Nava Peoples!</b></a>
-</div>
-<a class="text-center d-block mx-auto text-white mt-4" style="font-size: 3em;" href="#content"><i class="bi bi-arrow-down-circle"></i></a>
-<div id="content"></div>
-<div class="container" style="height: 50vh;">
-    <img class="d-block mx-auto" src="{{ asset('img/banner-logo.png') }}" style="height: 150px; margin-top:180px" alt="">
-</div>
-<div class="container text-white" style="height: 50vh; margin-top:80px">
-    <h3 class="fs-montserrat text-center"><b>First in Karawang!</b></h3>
-    <p class="fs-montserrat text-center p-2">Nava Exhibition is an exhibition of digital art, light illustrations, and a roller skating area. It is hoped that this will be the start for the advancement of entertainment in Karawang.</p>
-</div>
-<div class="container my-4">
-    <h4 class="fs-montserrat text-center text-white"><i>Created & Produced by:</i></h4>
-    <div class="container"></div>
-    <div class="row p-2" style="margin-top:150px">
-        <div class="col-6">
-            <p class="fs-montserrat text-center text-white mt-4" style="font-size: 1.2rem;"><b>Great A Creative</b></p>
+<div class="mt-5">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{{ asset('img/banner.JPG') }}" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="{{ asset('img/banner.JPG') }}" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="{{ asset('img/banner.JPG') }}" class="d-block w-100" alt="...">
+          </div>
         </div>
-        <div class="col-6">
-            <img class="d-block mx-auto" src="{{ asset('img/banner-logo.png') }}" style="height: 4.5rem; alt="">
-        </div>
+       <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </button>
+      </div>
+</div>
+<div class="container my-5">
+    
+    <h2 class="text-white text-center text-md-left fs-head mb-3" style="letter-spacing: 3px">Get The Ticket Here</h2>
+    <div class="row">
+       @foreach ($tickets as $item)
+       <div class="col mb-4 mb-md-0">
+        <div class="card mx-auto" style="width: 18rem;">
+            <img src="{{ asset('storage'.'/'.$item->foto) }}" class="card-img-top" alt="ticket">
+            <div class="card-body">
+              <h5 class="card-title fs-head">{{ $item->nama }}</h5>
+              <p class="card-text" style="font-size: 0.9em;">{{ Carbon\Carbon::parse($item->available)->format('d M Y') }} - {{ Carbon\Carbon::parse($item->expired)->format('d M Y')}} <br> <b>{{"Rp ". $item->harga }}</b> <br> Available Ticket : {{ $item->slot }} pcs</p>
+              @if ($item->status == "1")
+              <a href="/tickets/{{ $item->id }}" class="btn d-block fs-head" style="background-color: #6360e1; color:white" id="btn-ticket">Grab This</a>
+              @else
+              <a href="#" class="btn d-block fs-head" style="background-color: #f4e21d; color:rgb(0, 0, 0)" id="btn-ticket">Sorry ):</a>
+              @endif
+            </div>
+          </div>
+    </div>
+       @endforeach
     </div>
 </div>
 
-<div class="container fs-montserrat text-center text-white" style="height:50vh; margin-bottom:250px">
-    <h3 style="margin-top:150px;"><b>Exhibition Address</b></h3>
-    <h5 class="mt-5"><b>Gramedia World Karawang</b></h5>
-    <h5><b>(3rd floor)</b></h5>
-    <p>kav. V, Jl. Galuh Mas Raya, Sukaharja, Telukjambe Timur, Karawang, Jawa Barat 41361</p>
-    <h5 class="mt-5"><b>Hour</b></h5>
-    <p style="font-size: 1.4em">Monday - Sunday</p>
-    <p style="font-size: 1.4em">10AM - 8PM</p>
-    <h5 class="mt-5"><b>Price</b></h5>
-    <p style="font-size: 1.4em">Weekday : Rp 105,000/ticket</p>
-    <p style="font-size: 1.4em">Weekend : Rp 125,000/ticket</p>
-
+<div class="container my-5">
+    <h2 class="fs-head text-center text-white text-md-left mb-3" style="letter-spacing: 3px">Festival Location</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.525967119145!2d107.28960877459089!3d-6.3258146618975255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6977e946b3fcd3%3A0xce56ecfbd0ae019b!2sStreet%20carnival!5e0!3m2!1sen!2sid!4v1702927388808!5m2!1sen!2sid" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+<div class="container mt-5">
+    <h2 class="fs-head text-center text-white text-md-left mb-3" style="letter-spacing: 3px">What's In It?</h2>
+   <div class="row">
+    <div class="col mb-4 mb-md-0">
+        <img class="rounded d-block mx-auto" src="{{ asset('img/konser.jpg') }}" style="width: 20rem;" alt="concert">
+        <figcaption class="text-white text-center">Music Concert</figcaption>
+    </div>
+    <div class="col mb-4 mb-md-0">
+        <img class="rounded d-block mx-auto" src="{{ asset('img/shop.jpg') }}" style="width: 20rem;" alt="shop">
+        <figcaption class="text-white text-center">Market Shop</figcaption>
+    </div>
+    <div class="col mb-4 mb-md-0 ">
+        <img class="rounded d-block mx-auto" src="{{ asset('img/food.jpg') }}" style="width: 20rem;" alt="food">
+        <figcaption class="text-white text-center">Food Tenant</figcaption>
+    </div>
+    <div class="col mb-4 mt-3 mb-md-0">
+        <img class="d-block mx-auto rounded" src="{{ asset('img/playground.jpg') }}" style="width: 20rem;" alt="playground">
+        <figcaption class="text-white text-center">Playground</figcaption>
+    </div>
+   </div>
+</div>
+<div class="container" style="margin-top: 100px;"> <h2 class="text-white text-center fs-head mb-3">"De`LUNA 2024" aims to be a means of
+    introducing the modernization of a music performance.</h2></div>
+<div class="container mb-5" style="margin-top: 150px">
+    <h3 class="fs-montserrat text-center text-white"><i>Created & Produced by:</i></h3>
+    <div class="container"><p class="fs-montserrat text-center text-white mt-4" style="font-size: 2em; letter-spacing: 10px"><b>Great A Creative</b></p></div>
 </div>
 @endsection
+@push('js')
+<script src="{{ asset('js/app.js') }}"></script>
+@endpush
