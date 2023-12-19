@@ -29,7 +29,7 @@ class SendTicket extends Mailable
     public function build()
     {
 
-        return $this->subject('Enjoy The Nava Exhibition!')
+        return $this->subject('Selamat! Pembayaranmu tervalidasi.')
         ->view('email.validateMail');
     }
 }

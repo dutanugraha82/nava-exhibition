@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <div class="container-fluid" style="margin-top: 6rem;">
-    <h2 class="fs-montserrat mt-3 text-white"><b>Form pembelian ticket</b></h2>
+    <h2 class="fs-montserrat mt-3 text-center text-white"><b>Pembayaran Tiket</b></h2>
     <div class="card p-4 fs-montserrat" style="border-radius:9px;">
         
         <form action="/tickets/{{ $data->kode_registrasi }}/payment/store" id="form" method="POST" enctype="multipart/form-data">
@@ -15,6 +15,10 @@
                 <figcaption class="text-center">Scan QR untuk pembayaran</figcaption>
             </div>
             <div class="col-md">
+                <div class="mb-3">
+                    <label for="jumlah">Jumlah yang harus dibayar</label>
+                    <input type="text" class="form-control" name="jumlah_tiket" value="{{ $total_harga }}" id="amount" max="2" readonly>
+                </div>
                 <div class="mb-3">
                     <label for="email">Email Aktif</label>
                     <input type="email" class="form-control" name="email" id="email" value="{{ $data->email }}" readonly>
@@ -30,10 +34,6 @@
                 <div class="mb-3">
                     <label for="jumlah">Jumlah Tiket</label>
                     <input type="number" class="form-control" name="jumlah_tiket" value="{{ $data->jumlah_tiket }}" id="amount" max="2" readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="jumlah">Jumlah yang harus dibayar</label>
-                    <input type="text" class="form-control" name="jumlah_tiket" value="{{ $total_harga }}" id="amount" max="2" readonly>
                 </div>
                 <label for="">Bukti Pembayaran <span class="text-danger">*</span></label>
                 <input type="file" name="invoice" class="form-control" id="image" onchange="imgPreview()" required>

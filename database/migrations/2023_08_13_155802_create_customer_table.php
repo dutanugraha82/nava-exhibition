@@ -29,7 +29,7 @@ class CreateCustomerTable extends Migration
             $table->enum('status_tiket',[0,1]);
             $table->unsignedBigInteger('users_id')->nullable();
             $table->foreign('users_id')->references('id')->on('users');
-            $table->unsignedBigInteger('ticket_id');
+            $table->unsignedBigInteger('tickets_id');
             $table->foreign('tickets_id')->references('id')->on('tickets');
             $table->timestamps();
             $table->softDeletes();

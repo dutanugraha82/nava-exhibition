@@ -83,7 +83,7 @@
                     <a  href="#">
                         <i class="bi bi-twitter text-white p-3" style="font-size: 1.8em;"></i>
                     </a>
-                    <a href="https://wa.me/6285703485467">
+                    <a href="https://wa.me/6285283940573">
                       <i class="bi bi-whatsapp text-white p-3" style="font-size: 1.8em;"></i>
                     </a>
                 </div>

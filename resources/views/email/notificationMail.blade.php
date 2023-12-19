@@ -350,12 +350,13 @@
                     <tr>
                       <td>
                         <p>{{ $details['title'] }}</p>
-                        <p>Name : {{ $details['name']}}</p>
-                        <p>Amount of ticket : {{ $details['amount'] }}</p>
+                        <p>Nama : {{ $details['name']}}</p>
+                        <p>Jumlah tiket : {{ $details['amount'] }}</p>
                         <p>Total : {{ $details['total'] }}</p>
                         <p>Silahkan untuk melanjutkan ke pembayaran kurang dari 24 Jam di link berikut:</p>
                         <br>
                         <a href="{{ $details['link'] }}">Klik untuk Pembayaran</a>
+                        <br>
                         <small>Greate A Creative | Sangkuriang Tech &copy;2024</small>
                       </td>
                     </tr>

@@ -92,8 +92,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'navaartspace@gmail.com'),
-        'name' => "Nava Exhibition",
+        'address' => env('MAIL_FROM_ADDRESS', 'delunagac@gmail.com'),
+        'name' => "De Luna Music Fest 2024",
     ],
 
     /*

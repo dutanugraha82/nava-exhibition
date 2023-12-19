@@ -5,7 +5,7 @@
 @section('content')
 <div class="container-fluid" style="margin-top: 6rem;">
     <h2 class="fs-montserrat mt-3 text-white"><b>Form pembelian ticket</b></h2>
-    <div class="card p-4 fs-montserrat" style="background-color:#f4e21d; border-radius:9px;">
+    <div class="card p-4 fs-montserrat" style="background-color:wheat; border-radius:9px;">
         
         <form action="/tickets/{{ $ticket->id }}/order" id="form" method="POST">
             @csrf

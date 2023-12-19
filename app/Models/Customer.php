@@ -33,7 +33,7 @@ class Customer extends Model
     protected $dates = ['deleted_at','created_at'];
 
     public function ticket(){
-        return $this->belongsTo(Tickets::class);
+        return $this->belongsTo(Tickets::class, 'tickets_id', 'id');
     }
 
     public function admin(){

@@ -29,7 +29,7 @@ class NotificationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Your booking has been received!')
+        return $this->subject('Tinggal selangkah lagi')
         ->view('email.notificationMail');
     }
 }
