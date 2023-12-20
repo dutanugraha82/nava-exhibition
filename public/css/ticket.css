@@ -1,0 +1,104 @@
+.frame {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.ticket {
+    background-color: white;
+    border-radius: 18px;
+    width: 450px;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+div.badge-ticket-warning {
+    background-color: #ffeec1;
+    color: #ffc100;
+    padding: 1px 15px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+div.badge-ticket-warning > div.badge-dotted {
+    height: 12px;
+    width: 12px;
+    background-color: #ffc100;
+    border-radius: 100%;
+}
+
+div.badge-ticket-success {
+    background-color: #70e000;
+    color: #008000;
+    padding: 1px 15px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+div.badge-ticket-success > div.badge-dotted {
+    height: 12px;
+    width: 12px;
+    background-color: #008000;
+    border-radius: 100%;
+}
+
+.detail {
+    display: flex;
+    flex-flow: column;
+    gap: 20px;
+}
+
+.dotted {
+    height: 25px;
+    width: 100%;
+    position: relative;
+}
+
+.dotted .left,
+.dotted .right {
+    position: absolute;
+    background-color: #f8f9fcff;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+}
+
+.dotted .left {
+    top: -20px;
+    left: -20px;
+}
+
+.dotted .right {
+    top: -20px;
+    right: -20px;
+}
+
+.ticket .desc {
+    border-bottom: 3px dotted #999;
+    padding: 25px 25px 50px 25px;
+}
+
+.ticket .qr {
+    height: 250px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.qr .orderid p {
+    font-size: 15px;
+    font-weight: 500;
+    color: #475569;
+}

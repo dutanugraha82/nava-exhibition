@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\AlertMail;
-use App\Models\Time;
 use App\Models\User;
 use App\Mail\SendTicket;
 use App\Models\Customer;
@@ -12,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -65,27 +64,35 @@ class AdminCT extends Controller
     public function validateCustomer($id){
         $code = Str::random(6);
         $data =  Customer::find($id);
+
         $total_price = $this->moneyFormat($data->total_harga);
         $data->update([
             'kode_tiket' => $code,
             'status_validasi' => "1",
-            'status_tiket' => "1",
+            'status_tiket' => "0",
             'users_id' => auth()->user()->id,
         ]);
-        
-        // $details = [
-        //     'title' => "Welcome to Nava Exhibition!",
-        //     'body' => $data->name,
-        //     'amount' => $data->amount,
-        //     'code' => $code,
-        //     'date' => $data->date->date,
-        //     'time' => $data->time->time,
-        //     'shoes' => $data->shoes,
-        //     'total' => $total_price,
-        //     'footer' => "Please keep it secret!"
-        // ];
 
-        // Mail::to($data->email)->send(new SendTicket($details));
+        $qrcode = QrCode::size(200)->generate(
+            url('/').'/admin/customers/detail/ticket/'.$data->kode_registrasi,
+        );
+
+        $details = [
+            'title' => "Welcome to De Luna Music Festival 2024!",
+            'name' => $data->name,
+            'status_badge' => $data->status_tiket == '1' ? 'badge-ticket-success' : 'badge-ticket-warning',
+            'status' => $data->status_tiket == "1" ? 'Sudah digunakan' : 'Belum digunakan',
+            'email' => $data->email,
+            'nohp' => $data->nohp,
+            'presale' => $data->ticket->nama,
+            'jumlah_tiket' => $data->jumlah_tiket,
+            'harga_tiket' => $data->ticket->harga,
+            'total_harga' => $data->total_harga,
+            'qr' => $qrcode,
+            'link' => url('/').'/admin/customer/ticket'
+        ];
+
+        Mail::to($data->email)->send(new SendTicket($details));
         Alert::success('Customer Validated!');
         return redirect('/admin');
     }
@@ -233,5 +240,42 @@ class AdminCT extends Controller
         $request->session()->regenerateToken();
         Alert::success('See You!');
         return redirect('/');
+    }
+
+    public function detailTicket($registryCode){
+
+        $data = Customer::with('ticket')->where('kode_registrasi',$registryCode)->first();
+
+        $qrcode = QrCode::size(200)->generate(
+            url('/').'/admin/customers/detail/ticket/'.$data->kode_registrasi,
+        );
+
+        $details = [
+            'kode_registrasi' => $data->kode_registrasi,
+            'title' => "Welcome to De Luna Music Festival 2024!",
+            'name' => $data->name,
+            'status_badge' => $data->status_tiket == '1' ? 'badge-ticket-success' : 'badge-ticket-warning',
+            'status' => $data->status_tiket == "1" ? 'Sudah digunakan' : 'Belum digunakan',
+            'email' => $data->email,
+            'nohp' => $data->nohp,
+            'presale' => $data->ticket->nama,
+            'jumlah_tiket' => $data->jumlah_tiket,
+            'harga_tiket' => $data->ticket->harga,
+            'total_harga' => $data->total_harga,
+            'qr' => $qrcode,
+            'link' => url('/').'/customer/detail/'.$data->kode_registrasi
+        ];
+
+       return view('admin.contents.detailTicketCustomer', compact('details'));
+    }
+
+    public function statusTicketUpdate($registryCode){
+        $customer = Customer::where("kode_registrasi", $registryCode)->first();
+
+        $customer->update([
+            'status_tiket' => "1",
+        ]);
+
+        return back();
     }
 }

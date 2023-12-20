@@ -58,6 +58,9 @@ Route::middleware(['auth','admin','preventBack'])->prefix('/admin')->group(funct
     Route::get('/customers/validated',[AdminCT::class,'approvedCustomers'])->name('admin.approvedCustomers');
     Route::delete('/customer/{id}',[AdminCT::class,'deleteCustomer']);
     Route::get('/customers/rejected',[AdminCT::class,'rejectedCustomer'])->name('admin.rejectedCustomers');
+
+    Route::get('customers/detail/ticket/{id}', [AdminCT::class, 'detailTicket'])->name('admin.detailTicket');
+    Route::put('customers/update/status/tiket/{id}', [AdminCT::class, 'statusTicketUpdate'])->name('admin.statusTicketUpdate');
 });
 // Route End
 
@@ -70,3 +73,4 @@ Route::get('/tickets/{id}', [CustomerController::class, 'ticket']);
 Route::post('/tickets/{id}/order', [CustomerController::class, 'ticketKeep']);
 Route::get('/tickets/{uuid}/payment',[CustomerController::class, 'payment']);
 Route::post('/tickets/{uuid}/payment/store',[CustomerController::class, 'paymentStore']);
+Route::get('/tickets/customer/detail/{id}', [CustomerController::class, 'detailTicket']);

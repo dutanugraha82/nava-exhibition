@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\NotificationMail;
 use App\Models\Customer;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Carbon\Carbon;
 use App\Models\Schedule;
 use App\Models\Tickets;
@@ -118,9 +119,32 @@ class CustomerController extends Controller
 
     }
 
-   
-
     public function moneyFormat($total_harga){
         return 'Rp ' . number_format($total_harga, 2);
+    }
+
+    public function detailTicket($registryCode){
+        $data = Customer::with('ticket')->where('kode_registrasi',$registryCode)->first();
+
+        $qrcode = QrCode::size(200)->generate(
+            url('/').'/admin/customers/detail/ticket/'.$data->kode_registrasi,
+        );
+
+        $details = [
+            'kode_registrasi' => $data->kode_registrasi,
+            'title' => "Welcome to De Luna Music Festival 2024!",
+            'name' => $data->name,
+            'status_badge' => $data->status_tiket == '1' ? 'badge-ticket-success' : 'badge-ticket-warning',
+            'status' => $data->status_tiket == "1" ? 'Sudah digunakan' : 'Belum digunakan',
+            'email' => $data->email,
+            'nohp' => $data->nohp,
+            'presale' => $data->ticket->nama,
+            'jumlah_tiket' => $data->jumlah_tiket,
+            'harga_tiket' => $data->ticket->harga,
+            'total_harga' => $data->total_harga,
+            'qr' => $qrcode,
+        ];
+
+       return view('users.detail-ticket-customer', compact('details'));
     }
 }

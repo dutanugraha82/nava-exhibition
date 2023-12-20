@@ -13,3 +13,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+/database/seeders/*.php
+# /database/seeders/SuperAdminSeeder.php
+# /database/seeders/UserSeeder.php
