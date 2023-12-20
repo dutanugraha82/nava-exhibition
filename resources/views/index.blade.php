@@ -5,17 +5,17 @@
     De Luna Music Fest
 @endsection
 @section('content')
-<div class="mt-5">
+<div class="mt-5" id="home">
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="{{ asset('img/banner.JPG') }}" class="d-block w-100" alt="...">
+            <img src="{{ asset('img/banner.jpg') }}" class="d-block w-100" alt="banner">
           </div>
           <div class="carousel-item">
-            <img src="{{ asset('img/banner.JPG') }}" class="d-block w-100" alt="...">
+            <img src="{{ asset('img/banner.jpg') }}" class="d-block w-100" alt="banner">
           </div>
           <div class="carousel-item">
-            <img src="{{ asset('img/banner.JPG') }}" class="d-block w-100" alt="...">
+            <img src="{{ asset('img/banner.jpg') }}" class="d-block w-100" alt="banner">
           </div>
         </div>
        <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
@@ -28,7 +28,7 @@
         </button>
       </div>
 </div>
-<div class="container my-5">
+<div class="container my-5" id="ticket">
     
     <h2 class="text-white text-center text-md-left fs-head mb-3" style="letter-spacing: 3px">Get The Ticket Here</h2>
     <div class="row">
@@ -51,7 +51,7 @@
     </div>
 </div>
 
-<div class="container my-5">
+<div class="container my-5" id="maps">
     <h2 class="fs-head text-center text-white text-md-left mb-3" style="letter-spacing: 3px">Festival Location</h2>
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.525967119145!2d107.28960877459089!3d-6.3258146618975255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6977e946b3fcd3%3A0xce56ecfbd0ae019b!2sStreet%20carnival!5e0!3m2!1sen!2sid!4v1702927388808!5m2!1sen!2sid" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
@@ -76,7 +76,7 @@
     </div>
    </div>
 </div>
-<div class="container" style="margin-top: 100px;"> <h2 class="text-white text-center fs-head mb-3">"De`LUNA 2024" aims to be a means of
+<div class="container" style="margin-top: 100px;"> <h2 class="text-white text-center fs-head mb-3" id="about">"De`LUNA 2024" aims to be a means of
     introducing the modernization of a music performance.</h2></div>
 <div class="container mb-5" style="margin-top: 150px">
     <h3 class="fs-montserrat text-center text-white"><i>Created & Produced by:</i></h3>

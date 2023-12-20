@@ -4,9 +4,14 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="description" content="First Space Art exhibition in Karawang">
-    <meta name="keywords" content="nava exhibition, space art, nava, art exhibition, space art karawang">
+    <meta name="keywords" content="deluna karawang, festival musik karawang, deluna music fest, festival musik deluna">
     <meta name="author" content="sangkuriang tech">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:title" content="De Luna Music Fest 2024" />
+    <meta property="og:type" content="Music Festival" />
+    <meta property="og:description" content="Festival musik yang memperkenalkan tema modern dan berbeda dari festival musik pada umumnya." />
+    <meta property="og:url" content="https://delunamusicfest.com" />
+    <meta property="og:image" content="https://delunamusicfest.com/img/banner.jpg" />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -46,16 +51,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
+              <a class="nav-link" href="#home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Tickets</a>
+              <a class="nav-link" href="#ticket">Tickets</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Maps</a>
+              <a class="nav-link" href="#maps">Maps</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="#about">About</a>
             </li>
           </ul>
         </div>
