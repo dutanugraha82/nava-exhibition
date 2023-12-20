@@ -9,13 +9,13 @@
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="{{ asset('img/banner.jpg') }}" class="d-block w-100" alt="banner">
+            <img src="{{ asset('img/banner.jpg') }}" class="d-block w-100" alt="deluna">
           </div>
           <div class="carousel-item">
-            <img src="{{ asset('img/banner.jpg') }}" class="d-block w-100" alt="banner">
+            <img src="{{ asset('img/banner.jpg') }}" class="d-block w-100" alt="deluna">
           </div>
           <div class="carousel-item">
-            <img src="{{ asset('img/banner.jpg') }}" class="d-block w-100" alt="banner">
+            <img src="{{ asset('img/banner.jpg') }}" class="d-block w-100" alt="deluna">
           </div>
         </div>
        <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
