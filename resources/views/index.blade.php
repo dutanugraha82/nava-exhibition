@@ -5,17 +5,17 @@
     De Luna Music Fest
 @endsection
 @section('content')
-<div class="mt-5" id="home">
+<div style="margin-top: 100px;" id="home">
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img src="{{ asset('img/banner.jpg') }}" class="d-block w-100" alt="deluna">
           </div>
           <div class="carousel-item">
-            <img src="{{ asset('img/banner.jpg') }}" class="d-block w-100" alt="deluna">
+            <img src="{{ asset('img/banner2.jpg') }}" class="d-block w-100" alt="deluna">
           </div>
           <div class="carousel-item">
-            <img src="{{ asset('img/banner.jpg') }}" class="d-block w-100" alt="deluna">
+            <img src="{{ asset('img/banner3.jpg') }}" class="d-block w-100" alt="deluna">
           </div>
         </div>
        <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">

@@ -128,7 +128,7 @@
       <div class="ticket">
         <div class="desc">
           <div class="title">
-            DELUNA MUSIC FESTIVAL
+            DELUNA MUSIC FESTIVAL 2024
   
             <div class="{{ $details['status_badge'] }}">
               <div class="badge-dotted"></div>
@@ -143,7 +143,8 @@
               {{ $details["nohp"] }}
             </div>
             <div class="detail-ticket">
-              <p>{{ $details["presale"] }}</p>
+              <p>{{ $details["presale"] }}</p> <br>
+              Kode Tiket : {{ $details["kode_tiket"] }} <br>
               Total tiket: {{ $details["jumlah_tiket"] }} <br/>
               Harga satuan tiket: Rp. {{ $details["harga_tiket"] }} <br/> 
               Total Harga tiket: Rp. {{ $details["total_harga"] }} <br/>
@@ -161,7 +162,7 @@
               {{ $details["qr"] }}
             </center>
             <p>Jika qr tidak muncul, silahkan klik link dibawah ini.</p>
-            <a href="{{ $details["link"] }}">{{ $details["link"] }}</a>
+            <a href="https://delunamusicfest.com/tickets/customer/detail/{{ $details["link"] }}">https://delunamusicfest.com/tickets/customer/detail/{{ $details["link"] }}</a>
           </div>
         </div>
       </div>

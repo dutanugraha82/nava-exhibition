@@ -350,12 +350,13 @@
                     <tr>
                       <td>
                         <p>{{ $details['title'] }}</p>
-                        <p>Name : {{ $details['name']}}</p>
-                        <p>Amount of ticket : {{ $details['amount'] }}</p>
+                        <p>Nama : {{ $details['nama']}}</p>
+                        <p>Tiket : {{ $details['tiket'] }}</p>
+                        <p>Jumlah : {{ $details['jumlah'] }}</p>
                         <p>Total : {{ $details['total'] }}</p>
-                        <p>Oh No!, there is something wrong with your input data. Please make sure it, click below to see your proof of payment :</p>
+                        <p>Mohon maaf, data kamu tertolak. Silahkan untuk dicheck kembali bukti pembayaran kamu dibawah ini.</p>
                         <a href="{{ asset('storage'.'/'.$details['invoice']) }}"><p>Your Proof of payment</p></a>
-                        <a href="https://wa.me/6285703485467"><p>Contact Us!</p></a>
+                        <a href="https://wa.me/6285283940573"><p>Contact Us!</p></a>
                         <small>Great A Creative | Sangkuriang Tech &copy;2024</small>
                       </td>
                     </tr>

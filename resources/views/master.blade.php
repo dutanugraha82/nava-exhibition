@@ -41,9 +41,11 @@
   @stack('css')
   <body style="background-color: #d5737d">
     @include('sweetalert::alert')
-      <nav class="navbar navbar-expand-lg fixed-top navbar-dark p-3" style="background-color: #d5737d">
-        <div class="container mt-2">
-          <a class="navbar-brand fs-head" href="#">DE LUNA</a>
+      <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="background-color: #d5737d">
+        <div class="container">
+          <a class="navbar-brand fs-head" href="#">
+            <img src="{{ asset('img/login.png') }}" width="90" height="70" alt="foto">
+          </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

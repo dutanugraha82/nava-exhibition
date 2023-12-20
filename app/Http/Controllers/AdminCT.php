@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
+use App\Mail\AlertMail;
+use App\Models\Tickets;
 use App\Mail\SendTicket;
 use App\Models\Customer;
-use App\Models\Tickets;
-use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class AdminCT extends Controller
 {
@@ -27,7 +28,7 @@ class AdminCT extends Controller
         $pendingCustomers = DB::table('customer')->where('status_validasi','=',"0")->where('deleted_at','=', NULL)->count();
 
             if ($request->ajax()) {
-                $customer = Customer::where('status_validasi','=',"0")->orderBy('created_at')->get();
+                $customer = Customer::where('status_validasi','=',"0")->where('invoice', '!=', NULL)->orderBy('created_at')->get();
             return datatables()->of($customer)
             ->addIndexColumn()
             ->addColumn('action', function($customer){
@@ -89,7 +90,8 @@ class AdminCT extends Controller
             'harga_tiket' => $data->ticket->harga,
             'total_harga' => $data->total_harga,
             'qr' => $qrcode,
-            'link' => url('/').'/admin/customer/ticket'
+            'link' => $data->kode_registrasi,
+            'kode_tiket' => $code,
         ];
 
         Mail::to($data->email)->send(new SendTicket($details));
@@ -124,23 +126,26 @@ class AdminCT extends Controller
 
     public function deleteCustomer($id){
        $customer = Customer::find($id);
-       $tiket = Tickets::find($customer->ticket_id);
+       $tiket = Tickets::find($customer->tickets_id);
        $newSlot = $customer->jumlah_tiket + $tiket->slot;
+    //    dd($newSlot);
        $customer->delete();
        $tiket->update([
         'slot' => $newSlot,
        ]);
-    //    $total_price = $this->moneyFormat($customer->total_price);
-    //    $details = [
-    //     'title' => 'Your data has rejected ):',
-    //     'name' => $customer->name,
-    //     'amount' => $customer->amount,
-    //     'total' => $total_price,
-    //     'invoice' => $customer->invoice,
+       
+       $total_price = $this->moneyFormat($customer->total_harga);
+       $details = [
+        'title' => 'Data Kamu ditolak, mohon check kembali, atau hubungi kami.',
+        'nama' => $customer->name,
+        'tiket' => $tiket->nama,
+        'jumlah' => $customer->jumlah_tiket,
+        'total' => $total_price,
+        'invoice' => $customer->invoice,
 
-    //    ];
+       ];
 
-    //    Mail::to($customer->email)->send(new AlertMail($details));
+       Mail::to($customer->email)->send(new AlertMail($details));
 
         Alert::success('Data Deleted!');
         return redirect('/admin'); 
@@ -224,7 +229,7 @@ class AdminCT extends Controller
                 return redirect('/superadmin');
             }elseif (auth()->user()->role == 'admin') {
                 Alert::success('Login Success!');
-                return redirect('/admin');
+                return redirect()->intended('admin.dashboard');
             }else{
                 Alert::error('Invalid','Invalid Role!');
                 return back();

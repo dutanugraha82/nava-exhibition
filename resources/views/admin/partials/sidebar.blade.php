@@ -2,7 +2,7 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
-        <img class="p-2" src="{{ asset('img/banner-logo.png') }}" style="width: 100px" alt="">
+        <h5>DELUNA ADMIN</h5>
     </a>
 
     <!-- Divider -->

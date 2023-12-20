@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Nava Exhibition - Login</title>
+    <title>DELUNA</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -38,7 +38,8 @@
 
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <img src="{{ asset('img/nava-black.png') }}" style="width: 200px" alt="">
+                                        <img src="{{ asset('img/login.png') }}" style="width: 40%" alt="">
+                                        <h5><b>LOGIN PAGE</b></h5>
                                     </div>
                                     <hr class="my-4">
                                     <form class="user" action="/login" method="POST">
@@ -57,7 +58,7 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <small>Nava | Sangkuriang Tech 2023</small>
+                                        <small>Great A Creative | Sangkuriang Tech 2023</small>
                                     </div>
                                 </div>
                     </div>
