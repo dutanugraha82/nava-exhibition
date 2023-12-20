@@ -263,7 +263,7 @@ class AdminCT extends Controller
             'harga_tiket' => $data->ticket->harga,
             'total_harga' => $data->total_harga,
             'qr' => $qrcode,
-            'link' => url('/').'/customer/detail/'.$data->kode_registrasi
+            'link' => 'https://delunamusicfest.com/tickets/customer/detail/'.$data->kode_registrasi
         ];
 
        return view('admin.contents.detailTicketCustomer', compact('details'));
