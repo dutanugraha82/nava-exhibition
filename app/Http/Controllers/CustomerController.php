@@ -39,13 +39,8 @@ class CustomerController extends Controller
             if ($request->email != $request->validateEmail) {
                 Alert::error('Email Tidak Sama');
                 return back();
-                
-            }elseif($ticket->slot < $request->jumlah_tiket){
-                Alert::error('Tiket Habis ):');
-                return back();
-            }
-            else{
 
+            }elseif($ticket->slot > $request->jumlah_tiket){
                 $newSlot = $ticket->slot - $request->jumlah_tiket;
                 $total_harga = (int)$ticket->harga * $request->jumlah_tiket;
                 $kode_registrasi = Str::orderedUuid();
@@ -97,6 +92,10 @@ class CustomerController extends Controller
                         return back();
                     }
                     }, 10);
+            }
+            else{
+                Alert::error('Tiket Habis ):');
+                return back();
             }
         }
     }
