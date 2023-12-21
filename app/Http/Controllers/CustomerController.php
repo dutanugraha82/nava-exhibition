@@ -32,7 +32,7 @@ class CustomerController extends Controller
 
     public function ticketKeep(Request $request, $id){
         $ticket = Tickets::find($id);
-        if ($ticket->slot < 1 || $ticket->status == "0") {
+        if ($ticket->slot < $request->jumlah_tiket || $ticket->status == "0") {
             Alert::error("Tiket tidak tersedia");
             return back();
         } else {
@@ -48,25 +48,30 @@ class CustomerController extends Controller
                 return DB::transaction(function() use($request, $id, $total_harga, $newSlot, $kode_registrasi, $link, $ticket){
                 
                     try {
-                         DB::beginTransaction();
+                        if ($ticket->slot > $request->jumlah_tiket) {
+                            
+                            DB::beginTransaction();
                             $slot = Tickets::lockForUpdate()->find($id);
                             $slot->slot = $newSlot;
                             $slot->save();
-        
-                        DB::table('customer')->insert([
-                        'kode_registrasi' => $kode_registrasi,
-                        'name' => $request->nama,
-                        'nohp' => $request->nohp,
-                        'email' => $request->email,
-                        'sex' => $request->sex,
-                        'jumlah_tiket' => $request->jumlah_tiket,
-                        'total_harga' => $total_harga,
-                        'status_validasi' => "0",
-                        'status_tiket' => "0",
-                        'tickets_id' => $id,
-                        'created_at' => Carbon::now(),
-                        'updated_at' => Carbon::now(),
-                    ]);
+
+                            if ($ticket->slot > $request->jumlah_tiket) {
+                                DB::table('customer')->insert([
+                                    'kode_registrasi' => $kode_registrasi,
+                                    'name' => $request->nama,
+                                    'nohp' => $request->nohp,
+                                    'email' => $request->email,
+                                    'sex' => $request->sex,
+                                    'jumlah_tiket' => $request->jumlah_tiket,
+                                    'total_harga' => $total_harga,
+                                    'status_validasi' => "0",
+                                    'status_tiket' => "0",
+                                    'tickets_id' => $id,
+                                    'created_at' => Carbon::now(),
+                                    'updated_at' => Carbon::now(),
+                                ]);
+                            }
+                        }
         
         
                         DB::commit();
