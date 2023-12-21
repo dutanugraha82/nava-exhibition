@@ -48,11 +48,9 @@ class CustomerController extends Controller
                 // dd($kode_registrasi);
                 return DB::transaction(function() use($request, $id, $total_harga, $newSlot, $kode_registrasi, $link, $ticket){
                 
-                    try {
-                        
-                            DB::beginTransaction();
-                            $slot = Tickets::lockForUpdate()->find($id);
-                           if ($ticket->slot > 0) {
+                    DB::beginTransaction();
+                    try {     
+                        $slot = Tickets::lockForUpdate()->find($id);
                             $slot->slot = $newSlot;
                             $slot->save();
 
@@ -71,29 +69,27 @@ class CustomerController extends Controller
                                     'created_at' => Carbon::now(),
                                     'updated_at' => Carbon::now(),
                                 ]);
-                                  
-                        DB::commit();
-        
-                        $rupiah = $this->moneyFormat($total_harga);
-                        $details = [
-                            'title' => 'Pengajuan Tiket Diterima!',
-                            'name' => $request->nama,
-                            'amount' => $request->jumlah_tiket . " (".$ticket->nama.")",
-                            'total' => $rupiah,
-                            'link' => $link,
-                        ];
-                        Mail::to($request->email)->send(new NotificationMail($details));
-                        Alert::success('Berhasil!','Silahkan cek email untuk verifikasi selanjutnya');
-                        return redirect('/');
-                           }
-        
+                                 
+                                    DB::commit();
+                    
+                                    $rupiah = $this->moneyFormat($total_harga);
+                                    $details = [
+                                        'title' => 'Pengajuan Tiket Diterima!',
+                                        'name' => $request->nama,
+                                        'amount' => $request->jumlah_tiket . " (".$ticket->nama.")",
+                                        'total' => $rupiah,
+                                        'link' => $link,
+                                    ];
+                                    Mail::to($request->email)->send(new NotificationMail($details));
+                                    Alert::success('Berhasil!','Silahkan cek email untuk verifikasi selanjutnya');
+                                    return redirect('/');
                     } catch (\Exception $e) {
                         DB::rollBack();
                         throw $e;
                         Alert::error('Transaksi Gagal!');
                         return back();
                     }
-                    }, 10);
+                }, 10);
             }
             else{
                 Alert::error('Tiket Habis ):');
