@@ -40,7 +40,7 @@ class CustomerController extends Controller
                 Alert::error('Email Tidak Sama');
                 return back();
 
-            }elseif($ticket->slot > $request->jumlah_tiket){
+            }elseif($ticket->slot >= $request->jumlah_tiket){
                 $newSlot = $ticket->slot - $request->jumlah_tiket;
                 $total_harga = (int)$ticket->harga * $request->jumlah_tiket;
                 $kode_registrasi = Str::orderedUuid();
