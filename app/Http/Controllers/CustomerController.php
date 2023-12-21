@@ -39,7 +39,13 @@ class CustomerController extends Controller
             if ($request->email != $request->validateEmail) {
                 Alert::error('Email Tidak Sama');
                 return back();
-            }else{
+                
+            }elseif($ticket->slot < $request->jumlah_tiket){
+                Alert::error('Tiket Habis ):');
+                return back();
+            }
+            else{
+
                 $newSlot = $ticket->slot - $request->jumlah_tiket;
                 $total_harga = (int)$ticket->harga * $request->jumlah_tiket;
                 $kode_registrasi = Str::orderedUuid();
@@ -48,14 +54,13 @@ class CustomerController extends Controller
                 return DB::transaction(function() use($request, $id, $total_harga, $newSlot, $kode_registrasi, $link, $ticket){
                 
                     try {
-                        if ($ticket->slot > $request->jumlah_tiket) {
-                            
+                        
                             DB::beginTransaction();
                             $slot = Tickets::lockForUpdate()->find($id);
                             $slot->slot = $newSlot;
                             $slot->save();
 
-                            if ($ticket->slot > $request->jumlah_tiket) {
+                            
                                 DB::table('customer')->insert([
                                     'kode_registrasi' => $kode_registrasi,
                                     'name' => $request->nama,
@@ -70,10 +75,7 @@ class CustomerController extends Controller
                                     'created_at' => Carbon::now(),
                                     'updated_at' => Carbon::now(),
                                 ]);
-                            }
-                        }
-        
-        
+                                  
                         DB::commit();
         
                         $rupiah = $this->moneyFormat($total_harga);
