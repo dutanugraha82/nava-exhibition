@@ -52,6 +52,7 @@ class CustomerController extends Controller
                         
                             DB::beginTransaction();
                             $slot = Tickets::lockForUpdate()->find($id);
+                           if ($ticket->slot > 0) {
                             $slot->slot = $newSlot;
                             $slot->save();
 
@@ -84,6 +85,7 @@ class CustomerController extends Controller
                         Mail::to($request->email)->send(new NotificationMail($details));
                         Alert::success('Berhasil!','Silahkan cek email untuk verifikasi selanjutnya');
                         return redirect('/');
+                           }
         
                     } catch (\Exception $e) {
                         DB::rollBack();
