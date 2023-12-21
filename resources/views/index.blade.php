@@ -39,7 +39,7 @@
             <div class="card-body">
               <h5 class="card-title fs-head">{{ $item->nama }}</h5>
               <p class="card-text" style="font-size: 0.9em;">{{ Carbon\Carbon::parse($item->available)->format('d M Y') }} - {{ Carbon\Carbon::parse($item->expired)->format('d M Y')}} <br> <b>{{"Rp ". $item->harga }}</b> <br> Available Ticket : {{ $item->slot }} pcs</p>
-              @if ($item->status == "1")
+              @if ($item->status == "1" && $item->slot > 0)
               <a href="/tickets/{{ $item->id }}" class="btn d-block fs-head" style="background-color: #6360e1; color:white" id="btn-ticket">Grab This</a>
               @else
               <a href="#" class="btn d-block fs-head" style="background-color: #f4e21d; color:rgb(0, 0, 0)" id="btn-ticket">Sorry ):</a>

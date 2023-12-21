@@ -46,7 +46,7 @@
                     <input type="number" class="form-control" name="jumlah_tiket" id="amount" max="2" required>
                 </div>
                 <div class="mb-3">
-                    <label for="nohp">No WhatsApp <span class="text-danger">*</span></label>
+                    <label for="nohp">No WhatsApp <span class="text-danger">*tanpa "+"</span></label>
                     <input type="" class="form-control" name="nohp" placeholder="isi tanpa tanda '+'" required>
                 </div>
             </div>

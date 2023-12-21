@@ -51,8 +51,10 @@ class CustomerController extends Controller
                     DB::beginTransaction();
                     try {     
                         $slot = Tickets::lockForUpdate()->find($id);
-                            $slot->slot = $newSlot;
-                            $slot->save();
+                            if ($slot->slot > 0 ) {
+                                $slot->slot = $newSlot;
+                                $slot->save();
+                            }
 
                             
                                 DB::table('customer')->insert([
