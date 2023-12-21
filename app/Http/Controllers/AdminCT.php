@@ -28,16 +28,12 @@ class AdminCT extends Controller
         $pendingCustomers = DB::table('customer')->where('status_validasi','=',"0")->where('deleted_at','=', NULL)->count();
 
             if ($request->ajax()) {
-                $customer = Customer::where('status_validasi','=',"0")->where('invoice', '!=', NULL)->orderBy('created_at')->get();
+                $customer = Customer::where('status_validasi','=',"0")->where('invoice', '=', NULL)->orderBy('created_at')->get();
             return datatables()->of($customer)
             ->addIndexColumn()
             ->addColumn('action', function($customer){
                 return '<div class="d-flex justify-content-around">
-                        <form action="/admin/customer/'.$customer->id.'" method="POST">
-                        '.csrf_field().'
-                        '.method_field('PUT').'
-                            <button class="btn" type="submit"><i class=" text-success fa fa-check-square"></i></button>
-                        </form>
+                        
                         <form action="/admin/customer/'.$customer->id.'" method="POST">
                         '.csrf_field().'
                         '.method_field('DELETE').'
@@ -46,8 +42,12 @@ class AdminCT extends Controller
                         </div>';
             })
             
-            ->addColumn('file', function($customer){
-                return "<a href=".asset('/storage'.'/'.$customer->invoice)." target='_blank' rel='noopener noreferrer'>show</a>";
+            // ->addColumn('file', function($customer){
+            //     return "<a href=".asset('/storage'.'/'.$customer->invoice)." target='_blank' rel='noopener noreferrer'>show</a>";
+            // })
+            ->addColumn('expired', function($customer){
+                $expired = Carbon::parse($customer->created_at)->addHours(24);
+                return $expired->format('d M Y, H:i:s');
             })
             ->addColumn('total_harga', function($customer){
                 return $this->moneyFormat($customer->total_harga);
@@ -55,12 +55,49 @@ class AdminCT extends Controller
             ->addColumn('jenis', function($customer){
                 return $customer->ticket->nama;
             })
-            ->rawColumns(['action','file', 'total_harga', 'jenis'])
+            ->rawColumns(['action','expired', 'total_harga', 'jenis'])
             ->make(true);
         }
 
         return view('admin.contents.dashboard', compact('ticket','approvedCustomers','pendingCustomers','earning'));
     }
+
+    public function validationCustomers(Request $request){
+        if ($request->ajax()) {
+            $customer = Customer::where('status_validasi','=',"0")->where('invoice', '!=', NULL)->orderBy('created_at')->get();
+        return datatables()->of($customer)
+        ->addIndexColumn()
+        ->addColumn('action', function($customer){
+            return '<div class="d-flex justify-content-around">
+                    <form action="/admin/customer/'.$customer->id.'" method="POST">
+                    '.csrf_field().'
+                    '.method_field('PUT').'
+                        <button class="btn" type="submit"><i class=" text-success fa fa-check-square"></i></button>
+                    </form>
+                    <form action="/admin/customer/'.$customer->id.'" method="POST">
+                    '.csrf_field().'
+                    '.method_field('DELETE').'
+                        <button class="btn" type="submit" onclick="javascript: return confirm(\'Hapus '.$customer->name.' ?\')"><i class="text-danger fa fa-trash"></i></button>
+                    </form>
+                    </div>';
+        })
+        
+        ->addColumn('file', function($customer){
+            return "<a href=".asset('/storage'.'/'.$customer->invoice)." target='_blank' rel='noopener noreferrer'>show</a>";
+        })
+        ->addColumn('total_harga', function($customer){
+            return $this->moneyFormat($customer->total_harga);
+        })
+        ->addColumn('jenis', function($customer){
+            return $customer->ticket->nama;
+        })
+        ->rawColumns(['action','file', 'total_harga', 'jenis'])
+        ->make(true);
+        }
+        return view('admin.contents.validasiCustomer');
+    }
+
+
 
     public function validateCustomer($id){
         $code = Str::random(6);
@@ -229,7 +266,7 @@ class AdminCT extends Controller
                 return redirect('/superadmin');
             }elseif (auth()->user()->role == 'admin') {
                 Alert::success('Login Success!');
-                return redirect()->intended('admin.dashboard');
+                return redirect()->intended('/admin');
             }else{
                 Alert::error('Invalid','Invalid Role!');
                 return back();
@@ -254,6 +291,7 @@ class AdminCT extends Controller
         $qrcode = QrCode::size(200)->generate(
             url('/').'/admin/customers/detail/ticket/'.$data->kode_registrasi,
         );
+        $status_tiket = $data->status_tiket;
 
         $details = [
             'kode_registrasi' => $data->kode_registrasi,
@@ -271,7 +309,7 @@ class AdminCT extends Controller
             'link' => 'https://delunamusicfest.com/tickets/customer/detail/'.$data->kode_registrasi
         ];
 
-       return view('admin.contents.detailTicketCustomer', compact('details'));
+       return view('admin.contents.detailTicketCustomer', compact('details','status_tiket'));
     }
 
     public function statusTicketUpdate($registryCode){

@@ -44,6 +44,12 @@
 
     @elseif(auth()->user()->role == 'admin')
     <li class="nav-item active">
+        <a class="nav-link" href="/admin/customers/validation">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Validasi Customer</span></a>
+    </li>
+    <hr class="sidebar-divider">
+    <li class="nav-item active">
         <a class="nav-link" href="/admin/customers/validated">
             <i class="fas fa-fw fa-check-square"></i>
             <span>Customer Validated</span></a>

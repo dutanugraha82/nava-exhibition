@@ -62,8 +62,9 @@
     </div>
 </div>
 <hr>
-<h5 class="text-center">Unvalidated Customers</h5>
+<h5 class="text-center">Data Customer Masuk</h5>
 <div class="mt-4">
+    <p class="text-danger"><i>*Harap Lakukan Hapus data ketika expired sudah lewat. Validasi Customer dilakukan pada menu validasi customer</i></p>
     <div class="row">
         <div class="col-12 table-responsive">
             <table class="hover" id="customers">
@@ -75,7 +76,7 @@
                         <th>Jenis</th>
                         <th>Tiket</th>
                         <th>Total</th>
-                        <th>Invoice</th>
+                        <th>Expired</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -100,7 +101,7 @@
                    {data: 'jenis', name: 'jenis'},
                    {data: 'jumlah_tiket', name: 'jumlah_tiket'},
                    {data: 'total_harga', name: 'total_harga'},
-                   {data: 'file', name: 'file'},
+                   {data: 'expired', name: 'expired'},
                    {data: 'action', name: 'action', orderable: false, searchable: false},
                ]
            });
@@ -122,7 +123,7 @@
                    {data: 'jenis', name: 'jenis'},
                    {data: 'jumlah_tiket', name: 'jumlah_tiket'},
                    {data: 'total_harga', name: 'total_harga'},
-                   {data: 'file', name: 'file'},
+                   {data: 'expired', name: 'expired'},
                    {data: 'action', name: 'action', orderable: false, searchable: false},
                ]
            });

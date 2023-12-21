@@ -32,7 +32,7 @@
 				Total Harga tiket: Rp. {{ $details["total_harga"] }} <br/>
 			  </div>
 
-			@if($details['kode_registrasi'] == '0')
+			@if($status_tiket == '0')
 			<center>
 				<form action="{{ route('admin.statusTicketUpdate', $details['kode_registrasi']) }}" method="POST">
 					@method("PUT")

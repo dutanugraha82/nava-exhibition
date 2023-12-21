@@ -56,6 +56,7 @@ Route::middleware(['auth','admin','preventBack'])->prefix('/admin')->group(funct
     Route::get('/',[AdminCT::class,'index'])->name('admin.dashboard');
     Route::put('/customer/{id}',[AdminCT::class,'validateCustomer']);
     Route::get('/customers/validated',[AdminCT::class,'approvedCustomers'])->name('admin.approvedCustomers');
+    Route::get('/customers/validation',[AdminCT::class,'validationCustomers'])->name('admin.validationCustomers');
     Route::delete('/customer/{id}',[AdminCT::class,'deleteCustomer']);
     Route::get('/customers/rejected',[AdminCT::class,'rejectedCustomer'])->name('admin.rejectedCustomers');
 

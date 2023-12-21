@@ -11,8 +11,8 @@
             @csrf
            <div class="row">
             <div class="col-md mb-4 mb-md-0">
-                <img class="d-block mx-auto" style="width: 20rem; height:25rem;" src="{{ asset('img/qris.JPG') }}" alt="">
-                <figcaption class="text-center">Scan QR untuk pembayaran</figcaption>
+                <img class="d-block mx-auto" style="width: 20rem; height:25rem;" src="{{ asset('img/qris.JPG') }}" alt="qris">
+                <figcaption class="text-center">Scan QR untuk pembayaran <br> <a href="{{ asset('img/qris.JPG') }}" download>Download QRIS Great A Creative</a></figcaption>
             </div>
             <div class="col-md">
                 <div class="mb-3">
