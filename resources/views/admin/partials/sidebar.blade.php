@@ -2,7 +2,7 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
-        <h5>DELUNA ADMIN</h5>
+        <p>Great A Creative</p>
     </a>
 
     <!-- Divider -->

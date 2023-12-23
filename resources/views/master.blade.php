@@ -39,12 +39,12 @@
     }
   </style>
   @stack('css')
-  <body style="background-color: #d5737d">
+  <body style="background-color: #E42864">
     @include('sweetalert::alert')
-      <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="background-color: #d5737d">
+      <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="background-color: #E42864">
         <div class="container">
-          <a class="navbar-brand fs-head" href="#">
-            <img src="{{ asset('img/login.png') }}" width="90" height="70" alt="foto">
+          <a class="navbar-brand fs-head" href="/">
+            <img src="{{ asset('img/login.png') }}" width="100" height="70" alt="foto">
           </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -53,16 +53,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#home">Home</a>
+              <a class="nav-link" href="/#home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#ticket">Tickets</a>
+              <a class="nav-link" href="/#ticket">Tickets</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#maps">Maps</a>
+              <a class="nav-link" href="/#maps">Maps</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
+              <a class="nav-link" href="/#about">About</a>
             </li>
           </ul>
         </div>
@@ -71,7 +71,7 @@
 
         @yield('content')
 
-        <footer style="height:25vh;background-color: #6360e1; padding: 10px">
+        <footer style="height:28vh;background-color: #5e5fd8; padding: 10px">
             <div class="container fs-montserrat text-center text-white mt-3">
               <div class="row">
                 <div class="col-md-6">
@@ -98,14 +98,19 @@
                   <small>Created&Produced By: </small>
                     <p class="fs-montserrat">&nbsp;Great A Creative</p>
                 </div>
+                <div class="d-flex">
+                  <a href="/faq" class="text-white text-left text-md-right">
+                    <p class="fs-head">Privacy Policy</p>
+                  </a>
+                </div>
+                
                 </div>
                 
                 <div class="col-md-6">
                   <div class=" text-right">
-
-                    <a href="/faq" class="text-white text-left text-md-right">
-                      <p class="fs-head">Privacy Policy</p>
-                    </a>
+                    <a class="text-white" href="https://dutanugraha82.github.io/"><small>Sangkruiang Tech, 2024</small></a>
+                    
+                              
                   </div>
                 </div>
               </div>

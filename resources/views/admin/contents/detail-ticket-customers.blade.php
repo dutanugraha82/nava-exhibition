@@ -1,6 +1,7 @@
 @extends('admin.master')
 @section('content')
-    <h4>Rejected Customers</h4>
+    <h4>Customers total : {{ $total }}</h4>
+    <small>{{ $ticket->nama }}</small>
     <hr>
     <div class="col-12 table-responsive">
         <table class="hover" id="rejectedCustomers">
@@ -9,8 +10,8 @@
                     <th>No</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>tiket</th>
-                    <th>Total Price</th>
+                    <th>Jumlah</th>
+                    <th>Total Harga</th>
                     <th>File</th>
                 </tr>
             </thead>
@@ -40,8 +41,8 @@
                    {data: 'DT_RowIndex', name: 'no'},
                    {data: 'name', name: 'name'},
                    {data: 'email', name: 'email'},
-                   {data: 'ticket', name: 'ticket'},
-                   {data: 'total', name: 'total'},
+                   {data: 'jumlah_tiket', name: 'jumlah_tiket'},
+                   {data: 'total_harga', name: 'total_harga'},
                    {data: 'file', name: 'file'},
                ]
            });
@@ -67,12 +68,12 @@
                 }],
                ajax: "{{ route('admin.rejectedCustomers') }}",
                columns: [
-                    {data: 'DT_RowIndex', name: 'no'},
-                    {data: 'name', name: 'name'},
-                    {data: 'email', name: 'email'},
-                    {data: 'ticket', name: 'ticket'},
-                    {data: 'total', name: 'total'},
-                    {data: 'file', name: 'file'},
+                {data: 'DT_RowIndex', name: 'no'},
+                   {data: 'name', name: 'name'},
+                   {data: 'email', name: 'email'},
+                   {data: 'jumlah_tiket', name: 'jumlah_tiket'},
+                   {data: 'total_harga', name: 'total_harga'},
+                   {data: 'file', name: 'file'},
                ]
            });
        });

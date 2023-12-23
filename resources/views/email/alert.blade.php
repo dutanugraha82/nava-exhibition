@@ -354,8 +354,7 @@
                         <p>Tiket : {{ $details['tiket'] }}</p>
                         <p>Jumlah : {{ $details['jumlah'] }}</p>
                         <p>Total : {{ $details['total'] }}</p>
-                        <p>Mohon maaf, data kamu tertolak. Silahkan untuk dicheck kembali bukti pembayaran kamu dibawah ini.</p>
-                        <a href="{{ asset('storage'.'/'.$details['invoice']) }}"><p>Your Proof of payment</p></a>
+                        <p>Mohon maaf, data kamu tertolak. Kemungkinan karena waktu pembayaran kamu sudah habis atau terdapat tidak kesesuaian antara bukti pembayaran kamu dengan sistem kami.</p>
                         <a href="https://wa.me/6285283940573"><p>Contact Us!</p></a>
                         <small>Great A Creative | Sangkuriang Tech &copy;2024</small>
                       </td>

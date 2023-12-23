@@ -158,10 +158,7 @@
         </div>
         <div class="qr">
           <div class="orderid">
-            <center>
-              {{ $details["qr"] }}
-            </center>
-            <p>Jika qr tidak muncul, silahkan klik link dibawah ini.</p>
+            <h1>E-Ticket Kamu di bawah sini, klik link untuk melihatnya.</h1>
             <a href="https://delunamusicfest.com/tickets/customer/detail/{{ $details["link"] }}">https://delunamusicfest.com/tickets/customer/detail/{{ $details["link"] }}</a>
           </div>
         </div>

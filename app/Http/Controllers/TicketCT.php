@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tickets;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -109,5 +110,31 @@ class TicketCT extends Controller
        $data->delete();
        Alert::success('Data terhapus!');
        return redirect('/superadmin/tickets');
+    }
+
+    public function customers(Request $request, $id){
+
+        $total = DB::table('customer')->where('tickets_id', $id)->where('status_validasi','1')->count();
+        $ticket = Tickets::find($id);
+
+        if($request->ajax()){
+            $data = DB::table('customer')->where('tickets_id', $id)->where('status_validasi','1')->get();
+            return datatables()->of($data)
+            ->addIndexColumn()
+            ->addColumn('total', function($data){
+                return $this->moneyFormat($data->total_harga);
+            })
+            ->addColumn('file', function($data){
+                if ($data->invoice) {
+                    return "<a href=".asset('/storage'.'/'.$data->invoice)." target='_blank' rel='noopener noreferrer'>show</a>";
+                }else{
+                    return 'NULL';
+                }
+            })
+            ->rawColumns(['total','file'])
+            ->make(true);
+        }
+
+        return view('admin.contents.detail-ticket-customers', compact('total','ticket'));
     }
 }

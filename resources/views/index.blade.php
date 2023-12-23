@@ -40,7 +40,7 @@
               <h5 class="card-title fs-head">{{ $item->nama }}</h5>
               <p class="card-text" style="font-size: 0.9em;">{{ Carbon\Carbon::parse($item->available)->format('d M Y') }} - {{ Carbon\Carbon::parse($item->expired)->format('d M Y')}} <br> <b>{{"Rp ". $item->harga }}</b> <br> Available Ticket : {{ $item->slot }} pcs</p>
               @if ($item->status == "1" && $item->slot > 0)
-              <a href="/tickets/{{ $item->id }}" class="btn d-block fs-head" style="background-color: #6360e1; color:white" id="btn-ticket">Grab This</a>
+              <a href="/tickets/{{ $item->id }}" class="btn d-block fs-head" style="background-color: #5e5fd8; color:white" id="btn-ticket">Grab This</a>
               @else
               <a href="#" class="btn d-block fs-head" style="background-color: #f4e21d; color:rgb(0, 0, 0)" id="btn-ticket">Sorry ):</a>
               @endif
@@ -55,7 +55,8 @@
     <h2 class="fs-head text-center text-white text-md-left mb-3" style="letter-spacing: 3px">Festival Location</h2>
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.525967119145!2d107.28960877459089!3d-6.3258146618975255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6977e946b3fcd3%3A0xce56ecfbd0ae019b!2sStreet%20carnival!5e0!3m2!1sen!2sid!4v1702927388808!5m2!1sen!2sid" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
-<div class="container mt-5">
+
+  <div class="container mt-5 p-5">
     <h2 class="fs-head text-center text-white text-md-left mb-3" style="letter-spacing: 3px">What's In It?</h2>
    <div class="row">
     <div class="col mb-4 mb-md-0">
@@ -76,6 +77,7 @@
     </div>
    </div>
 </div>
+
 <div class="container" style="margin-top: 100px;"> <h2 class="text-white text-center fs-head mb-3" id="about">"De`LUNA 2024" aims to be a means of
     introducing the modernization of a music performance.</h2></div>
 <div class="container mb-5" style="margin-top: 150px">

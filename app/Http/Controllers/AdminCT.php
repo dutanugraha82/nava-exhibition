@@ -178,8 +178,6 @@ class AdminCT extends Controller
         'tiket' => $tiket->nama,
         'jumlah' => $customer->jumlah_tiket,
         'total' => $total_price,
-        'invoice' => $customer->invoice,
-
        ];
 
        Mail::to($customer->email)->send(new AlertMail($details));
@@ -225,19 +223,20 @@ class AdminCT extends Controller
             $rejectedCustomers = Customer::withTrashed()->whereNotNull('deleted_at')->get();
             return datatables()->of($rejectedCustomers)
             ->addIndexColumn()
-            ->addColumn('date', function($rejectedCustomers){
-                return $rejectedCustomers->date->date;
-            })
-            ->addColumn('time', function($rejectedCustomers){
-                return $rejectedCustomers->time->time;
-            })
             ->addColumn('total', function($rejectedCustomers){
                 return $this->moneyFormat($rejectedCustomers->total_price);
             })
-            ->addColumn('file', function($rejectedCustomer){
-                return "<a href=".asset('/storage'.'/'.$rejectedCustomer->invoice)." target='_blank' rel='noopener noreferrer'>show</a>";
+            ->addColumn('file', function($rejectedCustomers){
+                if ($rejectedCustomers->invoice) {
+                    return "<a href=".asset('/storage'.'/'.$rejectedCustomers->invoice)." target='_blank' rel='noopener noreferrer'>show</a>";
+                }else{
+                    return 'NULL';
+                }
             })
-            ->rawColumns(['date','time','total','file'])
+            ->addColumn('ticket', function($rejectedCustomers){
+                return $rejectedCustomers->ticket->nama;
+            })
+            ->rawColumns(['total','file'])
             ->make(true);
         }
 
