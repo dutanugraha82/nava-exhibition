@@ -100,7 +100,7 @@
                 </div>
                 <div class="d-flex">
                   <a href="/faq" class="text-white text-left text-md-right">
-                    <p class="fs-head">Privacy Policy</p>
+                    <p class="fs-head">Ketentuan dan Persyaratan</p>
                   </a>
                 </div>
                 

@@ -48,8 +48,8 @@ class CustomerController extends Controller
                 // dd($kode_registrasi);
                 return DB::transaction(function() use($request, $id, $total_harga, $newSlot, $kode_registrasi, $link, $ticket){
                 
-                    DB::beginTransaction();
                     try {     
+                        DB::beginTransaction();
                         $slot = Tickets::lockForUpdate()->find($id);
                             if ($slot->slot > 0 ) {
                                 $slot->slot = $newSlot;
@@ -83,7 +83,7 @@ class CustomerController extends Controller
                                         'link' => $link,
                                     ];
                                     Mail::to($request->email)->send(new NotificationMail($details));
-                                    Alert::success('Berhasil!','Silahkan cek email untuk verifikasi selanjutnya');
+                                    Alert::success('Berhasil!','Silahkan cek email untuk tahap pembayaran');
                                     return redirect('/');
                     } catch (\Exception $e) {
                         DB::rollBack();
