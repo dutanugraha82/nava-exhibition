@@ -4,7 +4,7 @@
     <small>{{ $ticket->nama }}</small>
     <hr>
     <div class="col-12 table-responsive">
-        <table class="hover" id="rejectedCustomers">
+        <table class="hover" id="customers">
             <thead>
                 <tr>
                     <th>No</th>
@@ -19,11 +19,10 @@
         </table>
     </div>
 @endsection
-@if (auth()->user()->role == 'superadmin')
 @push('js')
 <script type="text/javascript">
        $(function () {
-           var table = $('#rejectedCustomers').DataTable({
+           var table = $('#customers').DataTable({
                processing: true,
                serverSide: true,
                responsive:{
@@ -36,7 +35,7 @@
                     orderable:false,
                     targets:0
                 }],
-               ajax: "{{ route('superadmin.rejectedCustomers') }}",
+               ajax: '{{ url()->current() }}',
                columns: [
                    {data: 'DT_RowIndex', name: 'no'},
                    {data: 'name', name: 'name'},
@@ -49,34 +48,3 @@
        });
 </script>
 @endpush
-@elseif(auth()->user()->role == 'admin')
-@push('js')
-<script type="text/javascript">
-       $(function () {
-           var table = $('#rejectedCustomers').DataTable({
-               processing: true,
-               serverSide: true,
-               responsive:{
-                details:{
-                  type:'column'
-                    }
-                },
-                columnDefs:[{
-                    className:'dtr-control',
-                    orderable:false,
-                    targets:0
-                }],
-               ajax: "{{ route('admin.rejectedCustomers') }}",
-               columns: [
-                {data: 'DT_RowIndex', name: 'no'},
-                   {data: 'name', name: 'name'},
-                   {data: 'email', name: 'email'},
-                   {data: 'jumlah_tiket', name: 'jumlah_tiket'},
-                   {data: 'total_harga', name: 'total_harga'},
-                   {data: 'file', name: 'file'},
-               ]
-           });
-       });
-</script>
-@endpush
-@endif

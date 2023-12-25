@@ -62,6 +62,7 @@ ticket-list
               <tr>
                 <th scope="col">Ticket</th>
                 <th scope="col">Slot</th>
+                <th scope="col">Harga</th>
                 <th scope="col">Status</th>
                 <th scope="col">Expired</th>
                 <th scope="col">Action</th>
@@ -72,6 +73,7 @@ ticket-list
                 <tr>
                   <td>{{ $item->nama }}</td>
                   <td>{{ $item->slot }}</td>
+                  <td>{{ $item->harga }}</td>
                   @if ($item->status == 0)
                       <td>Non Active</td>
                   @else

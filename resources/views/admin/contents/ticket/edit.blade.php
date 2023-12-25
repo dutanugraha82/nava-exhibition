@@ -27,6 +27,10 @@
             <input type="number" class="form-control" name="slot" value="{{ $data->slot }}" required>
         </div>
         <div class="mb-3">
+            <label for="slot">Harga</label>
+            <input type="number" class="form-control" name="harga" value="{{ $data->harga }}" required>
+        </div>
+        <div class="mb-3">
             <label for="avilable">Available</label>
             <input type="date" class="form-control" name="available" value="{{ $data->available }}" required>
         </div>

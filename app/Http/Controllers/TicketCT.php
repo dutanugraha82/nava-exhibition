@@ -52,6 +52,7 @@ class TicketCT extends Controller
         $request->validate([
             'nama' => 'required',
             'slot' => 'required',
+            'harga' => 'required',
             'available' => 'required',
             'expired' => 'required',
         ]);
@@ -68,6 +69,7 @@ class TicketCT extends Controller
             Tickets::find($id)->update([
                 'nama' => $request->nama,
                 'slot' => $request->slot,
+                'harga' => $request->harga,
                 'foto' => $request->file('foto_baru')->store('foto-ticket'),
                 'available' => $request->available,
                 'expired' => $request->expired,
@@ -79,6 +81,7 @@ class TicketCT extends Controller
             Tickets::find($id)->update([
                 'nama' => $request->nama,
                 'slot' => $request->slot,
+                'harga' => $request->harga,
                 'available' => $request->available,
                 'expired' => $request->expired,
             ]);
@@ -116,9 +119,8 @@ class TicketCT extends Controller
 
         $total = DB::table('customer')->where('tickets_id', $id)->where('status_validasi','1')->count();
         $ticket = Tickets::find($id);
-
         if($request->ajax()){
-            $data = DB::table('customer')->where('tickets_id', $id)->where('status_validasi','1')->get();
+            $data = DB::table('customer')->where('tickets_id','=', $id)->where('status_validasi','1')->get();
             return datatables()->of($data)
             ->addIndexColumn()
             ->addColumn('total', function($data){
@@ -136,5 +138,9 @@ class TicketCT extends Controller
         }
 
         return view('admin.contents.detail-ticket-customers', compact('total','ticket'));
+    }
+
+    public function moneyFormat($total_harga){
+        return 'Rp ' . number_format($total_harga, 2);
     }
 }

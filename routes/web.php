@@ -49,7 +49,7 @@ Route::middleware(['auth','superadmin','preventBack'])->prefix('/superadmin')->g
     Route::put('/tickets/{id}/activate', [TicketCT::class,'activate']);
     Route::put('/tickets/{id}/unactivate', [TicketCT::class,'unactivate']); 
 
-    Route::get('/tickets/customers/{id}', [TicketCT::class, 'customers']);
+    Route::get('/tickets/customers/{id}', [TicketCT::class, 'customers'])->name('superadmin.customers');
 });
 // Route End
 
