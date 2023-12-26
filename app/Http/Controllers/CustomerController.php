@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
+use function PHPUnit\Framework\isNull;
+
 class CustomerController extends Controller
 {
     
@@ -103,8 +105,14 @@ class CustomerController extends Controller
     public function payment($uuid){
         $data = Customer::where('kode_registrasi', $uuid)->first();
         $total_harga = $this->moneyFormat($data->total_harga);
-        // dd($total_harga);
-        return view('users.order-request', compact('data', 'total_harga'));
+
+        if ($data->invoice == NULL) {
+            return view('users.order-request', compact('data', 'total_harga'));
+        }else{
+            Alert::info('Kamu sudah melakukan pembayaran!');
+            return redirect('/');
+        }
+        
     }
 
     public function paymentStore(Request $request, $uuid){
