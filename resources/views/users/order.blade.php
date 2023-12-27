@@ -51,7 +51,7 @@
                 </div>
             </div>
            </div>
-            <button type="submit" class="btn d-block mx-auto" style="margin-top: 30px; background-color:#6360e1; color:white; width:90%;">Selanjutnya</button>
+            <button type="submit" id="tombol" class="btn d-block mx-auto" style="margin-top: 30px; background-color:#6360e1; color:white; width:90%;">Selanjutnya</button>
         </form>
     </div>
     <br>
@@ -96,6 +96,13 @@ $('#txtNumeric').keydown(function (e) {
   
 });
 
+});
+
+$(document).ready(function () {
+    $("#form").submit(function () {
+        $("#tombol").attr("disabled", true);
+        return true;
+    });
 });
 </script>
 @endpush
