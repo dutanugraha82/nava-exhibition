@@ -54,7 +54,7 @@
 
 <div class="container my-5" id="maps">
     <h2 class="fs-head text-center text-white text-md-left mb-3" style="letter-spacing: 3px">Festival Location</h2>
-    <iframe style="border-radius:15px" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.525967119145!2d107.28960877459089!3d-6.3258146618975255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6977e946b3fcd3%3A0xce56ecfbd0ae019b!2sStreet%20carnival!5e0!3m2!1sen!2sid!4v1702927388808!5m2!1sen!2sid" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe style="border-radius:15px" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63453.75616321985!2d107.2493470014312!3d-6.282159988839619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69780f4b22834f%3A0x3f21d3f70aaef632!2sKarawang%20Barat%2C%20Kec.%20Karawang%20Bar.%2C%20Karawang%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1703663850000!5m2!1sid!2sid" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
 
   <div class="container mt-5">
