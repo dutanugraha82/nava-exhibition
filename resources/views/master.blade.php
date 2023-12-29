@@ -71,7 +71,7 @@
 
         @yield('content')
 
-        <footer style="height:28vh;background-color: #5e5fd8; padding: 10px">
+        <footer style="background-color: #5e5fd8; padding: 10px">
             <div class="container fs-montserrat text-center text-white mt-3">
               <div class="row">
                 <div class="col-md-6">
