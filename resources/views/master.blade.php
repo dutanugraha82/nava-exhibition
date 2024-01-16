@@ -108,7 +108,7 @@
                 
                 <div class="col-md-6">
                   <div class=" text-right">
-                    <a class="text-white" href="https://dutanugraha82.github.io/"><small>Sangkruiang Tech, 2024</small></a>
+                    <a class="text-white" href="https://dutanugraha82.github.io/"><small>Sangkuriang Tech, 2024</small></a>
                     
                               
                   </div>
