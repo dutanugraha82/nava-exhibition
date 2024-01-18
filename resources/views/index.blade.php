@@ -18,6 +18,9 @@
           <div class="carousel-item">
             <img src="{{ asset('img/banner3.png') }}" class="mx-auto d-block " style="width:95vw; border-radius:15px" alt="deluna">
           </div>
+          <div class="carousel-item">
+            <img src="{{ asset('img/banner4.png') }}" class="mx-auto d-block " style="width:95vw; border-radius:15px" alt="deluna">
+          </div>
         </div>
        <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -39,11 +42,17 @@
             <img src="{{ asset('storage'.'/'.$item->foto) }}" class="card-img-top" alt="ticket">
             <div class="card-body">
               <h5 class="card-title fs-head">{{ $item->nama }}</h5>
-              <p class="card-text" style="font-size: 0.9em;">{{ Carbon\Carbon::parse($item->available)->format('d M Y') }} - {{ Carbon\Carbon::parse($item->expired)->format('d M Y')}} <br> <b>{{"Rp ". $item->harga }}</b> <br> Available Ticket : {{ $item->slot }} pcs</p>
+              @if ($item->slot <= 10)
+              <p class="card-text" style="font-size: 0.9em;">{{ Carbon\Carbon::parse($item->available)->format('d M Y') }} - {{ Carbon\Carbon::parse($item->expired)->format('d M Y')}} <br> <b>{{"Rp ". $item->harga }}</b> <br> Available Ticket : {{ $item->slot }} pcs &#128543;</p>
+              @elseif($item->slot > 10)
+              <p class="card-text" style="font-size: 0.9em;">{{ Carbon\Carbon::parse($item->available)->format('d M Y') }} - {{ Carbon\Carbon::parse($item->expired)->format('d M Y')}} <br> <b>{{"Rp ". $item->harga }}</b> <br> Tiket Terbatas, Selagi masih ada nih &#128513;</p>
+              @else
+              <p class="card-text" style="font-size: 0.9em;">{{ Carbon\Carbon::parse($item->available)->format('d M Y') }} - {{ Carbon\Carbon::parse($item->expired)->format('d M Y')}} <br> <b>{{"Rp ". $item->harga }}</b> <br> Yaaah Habis &#128549;</p>
+              @endif
               @if ($item->status == "1" && $item->slot > 0)
               <a href="/tickets/{{ $item->id }}" class="btn d-block fs-head" style="background-color: #5e5fd8; color:white" id="btn-ticket">Grab This</a>
               @else
-              <a href="#" class="btn d-block fs-head" style="background-color: #f4e21d; color:rgb(0, 0, 0)" id="btn-ticket">Sorry ):</a>
+              <a href="#" class="btn d-block fs-head" style="background-color: #f4e21d; color:rgb(0, 0, 0)" id="btn-ticket">Sorry &#128549;</a>
               @endif
             </div>
           </div>
