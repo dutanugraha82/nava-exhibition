@@ -37,13 +37,13 @@
     <h2 class="text-white text-center text-md-left fs-head mb-3" style="letter-spacing: 3px">Get The Ticket Here</h2>
     <div class="row">
        @foreach ($tickets as $item)
-       <div class="col mb-4 mb-md-0">
+       <div class="col-md-6 mb-5 mt-5 mb-md-0">
         <div class="card mx-auto" style="width: 18rem;">
             <img src="{{ asset('storage'.'/'.$item->foto) }}" class="card-img-top" alt="ticket">
             <div class="card-body">
               <h5 class="card-title fs-head">{{ $item->nama }}</h5>
               @if ($item->slot <= 10)
-              <p class="card-text" style="font-size: 0.9em;">{{ Carbon\Carbon::parse($item->available)->format('d M Y') }} - {{ Carbon\Carbon::parse($item->expired)->format('d M Y')}} <br> <b>{{"Rp ". $item->harga }}</b> <br> Available Ticket : {{ $item->slot }} pcs &#128543;</p>
+              <p class="card-text" style="font-size: 0.9em;">{{ Carbon\Carbon::parse($item->available)->format('d M Y') }} - {{ Carbon\Carbon::parse($item->expired)->format('d M Y')}} <br> <b>{{"Rp ". $item->harga }}</b> <br> Available Ticket : {{ $item->slot }} pcs &#128543; <br> Tiket Tidak Tersedia</p>
               @elseif($item->slot > 10)
               <p class="card-text" style="font-size: 0.9em;">{{ Carbon\Carbon::parse($item->available)->format('d M Y') }} - {{ Carbon\Carbon::parse($item->expired)->format('d M Y')}} <br> <b>{{"Rp ". $item->harga }}</b> <br> Tiket Terbatas, Selagi masih ada nih &#128513;</p>
               @else
