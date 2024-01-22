@@ -42,12 +42,12 @@
             <img src="{{ asset('storage'.'/'.$item->foto) }}" class="card-img-top" alt="ticket">
             <div class="card-body">
               <h5 class="card-title fs-head">{{ $item->nama }}</h5>
-              @if ($item->slot <= 10)
-              <p class="card-text" style="font-size: 0.9em;">{{ Carbon\Carbon::parse($item->available)->format('d M Y') }} - {{ Carbon\Carbon::parse($item->expired)->format('d M Y')}} <br> <b>{{"Rp ". $item->harga }}</b> <br> Available Ticket : {{ $item->slot }} pcs &#128543; <br> Tiket Tidak Tersedia</p>
+              @if ($item->slot <= 10 && $item->slot > 1)
+              <p class="card-text" style="font-size: 0.9em;">{{ Carbon\Carbon::parse($item->available)->format('d M Y') }} - {{ Carbon\Carbon::parse($item->expired)->format('d M Y')}} <br> <b>{{"Rp ". $item->harga }}</b> <br> Available Ticket : {{ $item->slot }} pcs &#128543; <br> Tiket Menipis Guys!</p>
               @elseif($item->slot > 10)
               <p class="card-text" style="font-size: 0.9em;">{{ Carbon\Carbon::parse($item->available)->format('d M Y') }} - {{ Carbon\Carbon::parse($item->expired)->format('d M Y')}} <br> <b>{{"Rp ". $item->harga }}</b> <br> Tiket Terbatas, Selagi masih ada nih &#128513;</p>
-              @else
-              <p class="card-text" style="font-size: 0.9em;">{{ Carbon\Carbon::parse($item->available)->format('d M Y') }} - {{ Carbon\Carbon::parse($item->expired)->format('d M Y')}} <br> <b>{{"Rp ". $item->harga }}</b> <br> Yaaah Habis &#128549;</p>
+              @elseif($item->slot < 1)
+              <p class="card-text" style="font-size: 0.9em;">{{ Carbon\Carbon::parse($item->available)->format('d M Y') }} - {{ Carbon\Carbon::parse($item->expired)->format('d M Y')}} <br> <b>{{"Rp ". $item->harga }}</b> <br> Available Ticket : {{ $item->slot }} pcs &#128543; <br> Tiket Tidak Tersedia.</p>
               @endif
               @if ($item->status == "1" && $item->slot > 0)
               <a href="/tickets/{{ $item->id }}" class="btn d-block fs-head" style="background-color: #5e5fd8; color:white" id="btn-ticket">Grab This</a>
