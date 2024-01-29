@@ -39,6 +39,7 @@ Route::middleware(['auth','superadmin','preventBack'])->prefix('/superadmin')->g
     Route::get('/admin-users', [SuperAdminCT::class,'adminUsers']);
     Route::post('/admin-users/create', [SuperAdminCT::class,'storeAdminUsers']);
     Route::get('/customers/rejected',[AdminCT::class,'rejectedCustomer'])->name('superadmin.rejectedCustomers');
+    Route::get('/customers/ots',[SuperAdminCT::class,'otsReport'])->name('superadmin.otsReport');
 
     Route::get('/tickets', [TicketCT::class,'index']);
     Route::post('/tickets/create', [TicketCT::class,'store']);
@@ -64,6 +65,8 @@ Route::middleware(['auth','admin','preventBack'])->prefix('/admin')->group(funct
 
     Route::get('customers/detail/ticket/{id}', [AdminCT::class, 'detailTicket'])->name('admin.detailTicket');
     Route::put('customers/update/status/tiket/{id}', [AdminCT::class, 'statusTicketUpdate'])->name('admin.statusTicketUpdate');
+    Route::get('/ots', [AdminCT::class,'ots']);
+    Route::post('/ots/store', [AdminCT::class,'storeOTS']);
 });
 // Route End
 

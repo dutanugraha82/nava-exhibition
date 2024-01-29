@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Customer;
+use App\Models\OTS;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -60,6 +61,31 @@ class SuperAdminCT extends Controller
         ]);
         Alert::success('Data Added!');
         return redirect('/superadmin/admin-users');
+    }
+
+    public function otsReport(Request $request){
+        $tiket = OTS::sum('jumlah_tiket');
+        $jumlah_qris = OTS::where('via', '=', 'qris')->sum('jumlah_harga');
+        $jumlah_cash = OTS::where('via', '=', 'tunai')->sum('jumlah_harga');
+
+        $qris = $this->moneyFormat($jumlah_qris);
+        $cash = $this->moneyFormat($jumlah_cash);
+
+        if ($request->ajax()) {
+            $ots = OTS::all();
+            return datatables()->of($ots)
+            ->addIndexColumn()
+            ->addColumn('total_harga', function($ots){
+                return $this->moneyFormat($ots->jumlah_harga);
+            })
+            ->addColumn('admin', function($ots){
+                return $ots->admin->name;
+            })
+            ->rawColumns(['total_harga','admin'])
+            ->make(true);
+        }
+
+        return view('admin.contents.ots.index', compact('tiket','qris','cash'));
     }
     
     public function moneyFormat($total_price){

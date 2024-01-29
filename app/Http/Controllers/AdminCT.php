@@ -8,6 +8,7 @@ use App\Mail\AlertMail;
 use App\Models\Tickets;
 use App\Mail\SendTicket;
 use App\Models\Customer;
+use App\Models\OTS;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -319,5 +320,40 @@ class AdminCT extends Controller
         ]);
 
         return back();
+    }
+
+    public function ots(){
+        $tiket = OTS::where('users_id', auth()->user()->id)->sum('jumlah_tiket');
+        $jumlah_qris = OTS::where('users_id', auth()->user()->id)->where('via', '=', 'qris')->sum('jumlah_harga');
+        $jumlah_cash = OTS::where('users_id', auth()->user()->id)->where('via', '=', 'tunai')->sum('jumlah_harga');
+
+        $qris = $this->moneyFormat($jumlah_qris);
+        $cash = $this->moneyFormat($jumlah_cash);
+        return view('admin.contents.ots.input', compact('tiket', 'qris', 'cash'));
+    }
+
+    public function storeOTS(Request $request){
+        $request->validate([
+            'nama' => 'required',
+            'sex' => 'required',
+            'jumlah_tiket' => 'required',
+            'via' => 'required',
+        ]);
+
+        $jumlahHarga = $request->jumlah_tiket * 170000;
+
+        // dd($request);
+
+        OTS::create([
+            'name' => $request->nama,
+            'sex' => $request->sex,
+            'jumlah_tiket' => $request->jumlah_tiket,
+            'jumlah_harga' => $jumlahHarga,
+            'via' => $request->via,
+            'users_id' => auth()->user()->id,
+        ]);
+
+        Alert::success('Berhasil!', 'Semangat Kerjanya (:');
+        return redirect('/admin/ots');
     }
 }
