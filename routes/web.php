@@ -67,6 +67,9 @@ Route::middleware(['auth','admin','preventBack'])->prefix('/admin')->group(funct
     Route::put('customers/update/status/tiket/{id}', [AdminCT::class, 'statusTicketUpdate'])->name('admin.statusTicketUpdate');
     Route::get('/ots', [AdminCT::class,'ots']);
     Route::post('/ots/store', [AdminCT::class,'storeOTS']);
+
+    Route::get('/tiket-fisik', [AdminCT::class, 'tiketFisik'])->name('admin.tiket.fisik');
+    Route::put('/tiket-fisik/{id}', [AdminCT::class, 'tiketFisikValidasi']);
 });
 // Route End
 

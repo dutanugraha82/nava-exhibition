@@ -356,4 +356,44 @@ class AdminCT extends Controller
         Alert::success('Berhasil!', 'Semangat Kerjanya (:');
         return redirect('/admin/ots');
     }
+
+    public function tiketFisik(Request $request){
+        if($request->ajax()){
+           $data = DB::table('kode_tiket_fisik')->get();
+
+           return datatables()->of($data)
+                  ->addIndexColumn()
+                  ->addColumn('action', function($data){
+                   if ($data->status_tiket == '0') {
+                    return '<form action="/admin/tiket-fisik/'.$data->id.'" method="POST">
+                    '.csrf_field().'
+                    '.method_field("PUT").'
+                    <button type="submit" class="btn btn-success">Validasi Tiket</button>
+                    </form>';
+                   }else{
+                    return 'NO ACTION';
+                   }
+                  })
+                  ->addColumn('status_tiket', function($data){
+                    if ($data->status_tiket == '0') {
+                        return 'Belum Terpakai';
+                    }elseif($data->status_tiket == '1'){
+                        return 'Sudah Terpakai';
+                    }
+                  })
+                  ->rawColumns(['action', 'status_tiket'])
+                  ->make(true);
+        }
+
+        $sisaTiket = DB::table('kode_tiket_fisik')->where('status_tiket', '0')->count();
+        return view('admin.contents.kode-tiket-fisik', compact('sisaTiket'));
+    }
+
+    public function tiketFisikValidasi($id){
+        DB::table('kode_tiket_fisik')->where('id', $id)->update([
+            'status_tiket' => '1',
+        ]);
+        Alert::success('Validasi Tiket Berhasil!');
+        return redirect('/admin/tiket-fisik');
+    }
 }

@@ -73,6 +73,11 @@
             <i class="fas fa-fw fa-map-marker"></i>
             <span>OTS</span></a>
     </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="/admin/tiket-fisik">
+            <i class="fas fa-fw fa-certificate"></i>
+            <span>Tiket Fisik</span></a>
+    </li>
     <hr class="sidebar-divider">
     @endif
     
