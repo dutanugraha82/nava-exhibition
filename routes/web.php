@@ -83,3 +83,5 @@ Route::post('/tickets/{id}/order', [CustomerController::class, 'ticketKeep']);
 Route::get('/tickets/{uuid}/payment',[CustomerController::class, 'payment']);
 Route::post('/tickets/{uuid}/payment/store',[CustomerController::class, 'paymentStore']);
 Route::get('/tickets/customer/detail/{id}', [CustomerController::class, 'detailTicket']);
+Route::get('/check-ticket', [CustomerController::class, 'checkTicket']);
+Route::post('/check-ticket', [CustomerController::class, 'checkTicketProses']);

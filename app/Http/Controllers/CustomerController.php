@@ -161,4 +161,24 @@ class CustomerController extends Controller
 
        return view('users.detail-ticket-customer', compact('details'));
     }
+
+    public function checkTicket(){
+        return view('users.check-ticket');
+    }
+
+    public function checkTicketProses(Request $request){
+        $data = DB::table('kode_tiket_fisik')->where('kode',$request->kode)->get();
+        $kode = "";
+
+        foreach ($data as $item) {
+            $kode = $item->kode;
+            $status = $item->status_tiket;
+        }
+        if($kode == $request->kode) {
+            return view('users.check-ticket-validate', compact('kode', 'status'));
+        }else{
+            Alert::error('Tiket Kamu Tidak Tersedia');
+            return view('users.check-ticket');
+        }
+    }
 }
