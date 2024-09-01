@@ -1,6 +1,6 @@
 @extends('master')
 @section('page-title')
-    De Luna - order ticket
+    Psychoforia - order ticket
 @endsection
 @section('content')
 <div class="container-fluid" style="margin-top: 6rem;">
