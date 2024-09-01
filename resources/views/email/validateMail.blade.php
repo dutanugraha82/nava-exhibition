@@ -66,7 +66,7 @@
     <div class="frame">
       <div class="ticket">
         <div class="title">
-          DELUNA MUSIC FESTIVAL 2024
+          Psychoforia Event
           <div class="{{ $details['status_badge'] }}">
             <strong>{{ $details['status'] }}</strong>
           </div>
@@ -85,7 +85,7 @@
         <div class="qr">
           <div class="orderid">
             <h1>E-Ticket Kamu di bawah sini, klik link untuk melihatnya.</h1>
-            <a href="http://127.0.0.1/tickets/customer/detail/{{ $details["link"] }}">Lihat E-Ticket</a>
+            <a href="http://psychoforia.com/tickets/customer/detail/{{ $details["link"] }}">Lihat E-Ticket</a>
           </div>
         </div>
       </div>

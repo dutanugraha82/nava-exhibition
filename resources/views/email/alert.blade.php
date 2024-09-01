@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>De Luna Music Festival 2024</title>
+    <title>Psychoforia Event</title>
     <style>
       /* -------------------------------------
           GLOBAL RESETS
@@ -355,8 +355,8 @@
                         <p>Jumlah : {{ $details['jumlah'] }}</p>
                         <p>Total : {{ $details['total'] }}</p>
                         <p>Mohon maaf, data kamu tertolak. Kemungkinan karena waktu pembayaran kamu sudah habis atau terdapat tidak kesesuaian antara bukti pembayaran kamu dengan sistem kami.</p>
-                        <a href="https://wa.me/6285283940573"><p>Contact Us!</p></a>
-                        <small>Great A Creative | Sangkuriang Tech &copy;2024</small>
+                        <a href="https://wa.me/628983669636"><p>Contact Us!</p></a>
+                        <small>Psychoforia | Sangkuriang Tech &copy;2024</small>
                       </td>
                     </tr>
                   </table>

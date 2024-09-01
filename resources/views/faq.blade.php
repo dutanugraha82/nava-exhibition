@@ -1,15 +1,15 @@
 @extends('master')
 @section('page-title')
-    De Luna Music Fest
+    Psychoforia
 @endsection
 @section('content')
 <div class="banner-content" style="margin-top: 10rem; margin-left:100px">
-    <p style="font-size: 1.6rem;" class="text-white fs-montserrat mt-3"><b>Ketentuan dan Persyaratan De Luna Music Fest</b></p style="font-size: 1.8em;">
+    <p style="font-size: 1.6rem;" class="text-white fs-montserrat mt-3"><b>Ketentuan dan Persyaratan Psychoforia</b></p style="font-size: 1.8em;">
 </div>
 <div class="container mt-4" style="margin-bottom: 200px">
     <p class="fs-montserrat text-white">Ketentuan dan Persyaratan</p>
     <ul class="pr-1">
-        <li class="fs-montserrat text-white">Setiap pembeli tiket dinyatakan menyetujui ketentuan dan persyaratan pada De Luna Music Fest.</u>.</li>
+        <li class="fs-montserrat text-white">Setiap pembeli tiket dinyatakan menyetujui ketentuan dan persyaratan pada Psychoforia.</u>.</li>
     </ul>
 
     <ul class="pr-1 mt-4">
@@ -38,7 +38,7 @@
         - Memeriksa E-mail secara berkala (1x24 jam dari mengirim bukti pembayaran). <br>
         - Periksa semua E-mail, termasuk di spam. <br>
         - Pastikan mendaftar dengan email yang terhubung dengan perangkat Anda dan penyimpanan E-mail tidak penuh.<br>
-        - Pastikan E-mail yang didapat merupakan dari delunagac@gmail.com .
+        - Pastikan E-mail yang didapat merupakan dari psychoforia@gmail.com .
     </p>
 
     <ul class="pr-1 mt-4">

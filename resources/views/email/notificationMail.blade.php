@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>De Luna Music Festival 2024</title>
+    <title>Psychoforia Event</title>
     <style>
       /* -------------------------------------
           GLOBAL RESETS
@@ -357,7 +357,7 @@
                         <br>
                         <a href="{{ $details['link'] }}">Klik untuk Pembayaran</a>
                         <br>
-                        <small>Greate A Creative | Sangkuriang Tech &copy;2024</small>
+                        <small>Psychoforia | Sangkuriang Tech &copy;2024</small>
                       </td>
                     </tr>
                   </table>

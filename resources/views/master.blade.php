@@ -3,15 +3,15 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="description" content="First Space Art exhibition in Karawang">
-    <meta name="keywords" content="deluna karawang, festival musik karawang, deluna music fest, festival musik deluna">
+    <meta name="description" content="Psychoforia is an event organized by students of the faculty of psychology, University of Buana Perjuangan Karawang.">
+    <meta name="keywords" content="psychoforia, psikologi karawang, psikologi ubp, ubp">
     <meta name="author" content="sangkuriang tech">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta property="og:title" content="De Luna Music Fest 2024" />
-    <meta property="og:type" content="Music Festival" />
-    <meta property="og:description" content="Festival musik yang memperkenalkan tema modern dan berbeda dari festival musik pada umumnya." />
-    <meta property="og:url" content="https://delunamusicfest.com" />
-    <meta property="og:image" content="https://delunamusicfest.com/img/banner.jpg" />
+    <meta property="og:title" content="Psychoforia 2024" />
+    <meta property="og:type" content="Event of Faculty Psychology Buana Perjuangan University" />
+    <meta property="og:description" content="Psychoforia is an event organized by students of the faculty of psychology, University of Buana Perjuangan Karawang." />
+    <meta property="og:url" content="https://psychoforia.com" />
+    <meta property="og:image" content="https://psychoforia.com/img/logo.png" />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -84,7 +84,7 @@
                   </div>
                   
                   <div class="d-flex mb-2">
-                    <a  href="https://www.instagram.com/deluna.land2024/">
+                    <a  href="https://www.instagram.com/diesnat5fpsi.ubpkrw/">
                         <i class="bi bi-instagram text-white pr-3" style="font-size: 1.8em;"></i>
                     </a>
                     <a  href="#">
@@ -93,7 +93,7 @@
                     <a  href="#">
                         <i class="bi bi-twitter text-white p-3" style="font-size: 1.8em;"></i>
                     </a>
-                    <a href="https://wa.me/6285283940573">
+                    <a href="https://wa.me/628983669636">
                       <i class="bi bi-whatsapp text-white p-3" style="font-size: 1.8em;"></i>
                     </a>
                 </div>
