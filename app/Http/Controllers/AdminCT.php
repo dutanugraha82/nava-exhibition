@@ -120,7 +120,7 @@ class AdminCT extends Controller
         );
 
         $details = [
-            'title' => "Welcome to De Luna Music Festival 2024!",
+            'title' => "Welcome to Psychoforia!",
             'name' => $data->name,
             'status_badge' => $data->status_tiket == '1' ? 'badge-ticket-success' : 'badge-ticket-warning',
             'status' => $data->status_tiket == "1" ? 'Sudah digunakan' : 'Belum digunakan',
@@ -302,7 +302,7 @@ class AdminCT extends Controller
 
         $details = [
             'kode_registrasi' => $data->kode_registrasi,
-            'title' => "Welcome to De Luna Music Festival 2024!",
+            'title' => "Welcome to Psychoforia!",
             'name' => $data->name,
             'status_badge' => $data->status_tiket == '1' ? 'badge-ticket-success' : 'badge-ticket-warning',
             'status' => $data->status_tiket == "1" ? 'Sudah digunakan' : 'Belum digunakan',
@@ -313,7 +313,7 @@ class AdminCT extends Controller
             'harga_tiket' => $data->ticket->harga,
             'total_harga' => $data->total_harga,
             'qr' => $qrcode,
-            'link' => 'https://delunamusicfest.com/tickets/customer/detail/'.$data->kode_registrasi
+            'link' => 'https://psychoforia.com/tickets/customer/detail/'.$data->kode_registrasi
         ];
 
        return view('admin.contents.detailTicketCustomer', compact('details','status_tiket'));

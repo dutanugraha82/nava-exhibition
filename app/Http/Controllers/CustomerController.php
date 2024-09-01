@@ -46,7 +46,7 @@ class CustomerController extends Controller
                 $newSlot = $ticket->slot - $request->jumlah_tiket;
                 $total_harga = (int)$ticket->harga * $request->jumlah_tiket;
                 $kode_registrasi = Str::orderedUuid();
-                $link = "https://delunamusicfest.com/tickets/".$kode_registrasi."/payment";
+                $link = "https://psychoforia.com/tickets/".$kode_registrasi."/payment";
                 // dd($kode_registrasi);
                 return DB::transaction(function() use($request, $id, $total_harga, $newSlot, $kode_registrasi, $link, $ticket){
                 
@@ -151,7 +151,7 @@ class CustomerController extends Controller
 
         $details = [
             'kode_registrasi' => $data->kode_registrasi,
-            'title' => "Welcome to De Luna Music Festival 2024!",
+            'title' => "Welcome to Psychoforia!",
             'name' => $data->name,
             'status_badge' => $data->status_tiket == '1' ? 'badge-ticket-success' : 'badge-ticket-warning',
             'status' => $data->status_tiket == "1" ? 'Sudah digunakan' : 'Belum digunakan',
