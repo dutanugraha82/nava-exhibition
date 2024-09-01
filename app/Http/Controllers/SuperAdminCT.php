@@ -55,7 +55,7 @@ class SuperAdminCT extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'role' => 'admin',
-            'password' => Hash::make('deluna2024'),
+            'password' => Hash::make('psychoforia2024'),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

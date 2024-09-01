@@ -62,7 +62,7 @@
 </div>
 
 <div class="container my-5" id="maps">
-    <h2 class="fs-head text-center text-white text-md-left mb-3" style="letter-spacing: 3px">Festival Location</h2>
+    <h2 class="fs-head text-center text-white text-md-left mb-3" style="letter-spacing: 3px">Event Location</h2>
     <iframe style="border-radius:15px" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.542837501017!2d107.29873607499114!3d-6.323615493665882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69762d4c316603%3A0x50a8005dfd52a897!2sBuana%20Perjuangan%20University!5e0!3m2!1sen!2sid!4v1725162778962!5m2!1sen!2sid" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
 
@@ -75,15 +75,15 @@
     </div>
     <div class="col mb-4 mb-md-0">
         <img class=" d-block mx-auto" src="{{ asset('img/shop.jpg') }}" style="width: 20rem; border-radius:15px" alt="shop">
-        <figcaption class="text-white text-center">Market Shop</figcaption>
+        <figcaption class="text-white text-center">Bazaar</figcaption>
     </div>
     <div class="col mb-4 mb-md-0 ">
-        <img class=" d-block mx-auto" src="{{ asset('img/food.jpg') }}" style="width: 20rem; border-radius:15px" alt="food">
-        <figcaption class="text-white text-center">Food Tenant</figcaption>
+        <img class=" d-block mx-auto" src="{{ asset('img/workshop.jpg') }}" style="width: 20rem; border-radius:15px" alt="food">
+        <figcaption class="text-white text-center">Workshop</figcaption>
     </div>
     <div class="col mb-4 mt-3 mb-md-0">
-        <img class="d-block mx-auto " src="{{ asset('img/playground.jpg') }}" style="width: 20rem; border-radius:15px" alt="playground">
-        <figcaption class="text-white text-center">Playground</figcaption>
+        <img class="d-block mx-auto " src="{{ asset('img/art.jpg') }}" style="width: 20rem; border-radius:15px" alt="playground">
+        <figcaption class="text-white text-center">Exhibition Art</figcaption>
     </div>
    </div>
 </div>
