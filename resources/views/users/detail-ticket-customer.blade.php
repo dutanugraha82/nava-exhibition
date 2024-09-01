@@ -20,7 +20,7 @@
       <div class="ticket">
         <div class="desc">
           <div class="title">
-            DELUNA MUSIC FESTIVAL
+            Psychoforia Event
   
             <div class="{{ $details['status_badge'] }}">
               <div class="badge-dotted"></div>
