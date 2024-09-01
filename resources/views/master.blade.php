@@ -39,12 +39,12 @@
     }
   </style>
   @stack('css')
-  <body style="background-color: #E42864">
+  <body style="background-color: #be58cf">
     @include('sweetalert::alert')
-      <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="background-color: #E42864">
+      <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="background-color: #bd58cfbc">
         <div class="container">
           <a class="navbar-brand fs-head" href="/">
-            <img src="{{ asset('img/login.png') }}" width="100" height="70" alt="foto">
+            <img src="{{ asset('img/logo.png') }}" width="100" height="50" alt="foto">
           </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -74,12 +74,12 @@
 
         @yield('content')
 
-        <footer style="background-color: #5e5fd8; padding: 10px">
+        <footer style="background-color: #ffba00; padding: 10px">
             <div class="container fs-montserrat text-center text-white mt-3">
               <div class="row">
                 <div class="col-md-6">
                   <div class="d-flex"> 
-                    <h5 class="fs-head">DE LUNA</h5>
+                    <h5 class="fs-head">Psychoforia</h5>
                     <small>&copy;2024</small>
                   </div>
                   
@@ -99,7 +99,7 @@
                 </div>
                 <div class="d-flex">
                   <small>Created&Produced By: </small>
-                    <p class="fs-montserrat">&nbsp;Great A Creative</p>
+                    <p class="fs-montserrat">&nbsp;Faculty of Psychology</p>
                 </div>
                 <div class="d-flex">
                   <a href="/faq" class="text-white text-left text-md-right">

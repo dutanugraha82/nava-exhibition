@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use App\Models\User;
+use App\Exports\CustomerExport;
+use App\Exports\TiketFisikExcel;
 use App\Mail\AlertMail;
-use App\Models\Tickets;
 use App\Mail\SendTicket;
 use App\Models\Customer;
 use App\Models\OTS;
-use Illuminate\Support\Str;
+use App\Models\Tickets;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -160,6 +163,10 @@ class AdminCT extends Controller
         }
 
         return view('admin.contents.approvedCustomers');
+    }
+
+    public function approvedCustomersExportExcel(){
+        return Excel::download(new CustomerExport, 'ApprovedCustomer.xlsx');
     }
 
     public function deleteCustomer($id){
@@ -395,5 +402,9 @@ class AdminCT extends Controller
         ]);
         Alert::success('Validasi Tiket Berhasil!');
         return redirect('/admin/tiket-fisik');
+    }
+
+    public function export(){
+        return Excel::download(new TiketFisikExcel, 'kode_tiket.xlsx');
     }
 }

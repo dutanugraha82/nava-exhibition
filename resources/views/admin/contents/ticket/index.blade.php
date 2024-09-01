@@ -5,7 +5,7 @@ ticket-list
 @section('content')
     <div class="card p-2">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#staticBackdrop">
             <span>+</span>ADD Ticket
         </button>
         
@@ -107,5 +107,6 @@ ticket-list
                 @endforeach
             </tbody>
           </table>
+          <a class="btn btn-success mb-3" href="/customers/validated/export"><i class="fas fa-file-excel"></i> Download All Data Customers (Excel)</a>
     </div>
 @endsection

@@ -3,6 +3,7 @@
     <h4>Approved Customers</h4>
     <hr>
     <div class="col-12 table-responsive">
+        <a class="btn btn-success mb-3" href="/customers/validated/export"><i class="fas fa-file-excel"></i> Download Excel</a>
         <table class="hover" id="approvedCustomers">
             <thead>
                 <tr>
@@ -59,7 +60,8 @@
                    {data: 'total', name: 'total'},
                    {data: 'purchase_date', name: 'purchase_date'},
                    {data: 'admin', name: 'admin'},
-               ]
+               ],
+               lengthMenu: [[10,50,-1], [10,50,"All Data"]],
            });
        });
 </script>

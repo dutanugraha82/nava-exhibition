@@ -92,8 +92,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'delunagac@gmail.com'),
-        'name' => "De Luna Music Fest 2024",
+        'address' => env('MAIL_FROM_ADDRESS', 'duta.nugraha99@gmail.com'),
+        'name' => "Psychoforia UBP Karawang",
     ],
 
     /*

@@ -1,12 +1,12 @@
 @extends('admin.master')
 @section('content')
 <h5 class="text-center">Kode Tiket Fisik</h5>
-<div class="my-3">
-    <h5>Sisa Tiket Fisik</h5>
-    <p>{{ $sisaTiket }}</p>
+<div class="mb-2" style="display: flex; justify-content: space-between">
+    <a class="btn btn-success mb-3" href="/admin/tiket-fisik/export"><i class="fas fa-file-excel"></i> Download Excel</a>
+    <p><b>Tiket Tersedia : {{ $sisaTiket }}</b></p>
 </div>
 <div class="container-fluid">
-    <div class="table-responsive mt-5">
+    <div class="table-responsive mt-2">
         <table class="hover" id="kodeFisik" style="width: 100%">
             <thead>
                 <tr>

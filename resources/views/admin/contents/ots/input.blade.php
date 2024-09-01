@@ -52,7 +52,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary d-block mx-auto mt-4" style="width:60vw;">Submit Tiket</button>
+            <button type="submit" class="btn btn-primary d-block mx-auto mt-4" onclick="return confirm('Customer sudah membayar?')" style="width:60vw;">Submit Tiket</button>
         </form>
     </div>
 @endsection

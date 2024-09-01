@@ -2,7 +2,7 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
-        <p>Great A Creative</p>
+        <p>Psychoforia</p>
     </a>
 
     <!-- Divider -->

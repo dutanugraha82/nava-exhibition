@@ -4,6 +4,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>{{ $details["title"] }}</title>
+    <style>
+      body {
+        background-color: #f6f6f6;
+        font-family: 'Nunito', Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+      }
+      .frame {
+        width: 100%;
+        display: table;
+        margin: 20px auto;
+        text-align: center;
+      }
+      .ticket {
+        background-color: white;
+        border-radius: 18px;
+        width: 450px;
+        margin: 0 auto;
+        padding: 20px;
+        display: inline-block;
+      }
+      .title {
+        margin-bottom: 35px;
+      }
+      .badge-ticket-warning {
+        background-color: #ffeec1;
+        color: #ffc100;
+        padding: 1px 15px;
+        border-radius: 25px;
+        display: inline-block;
+      }
+      .badge-ticket-success {
+        background-color: #70e000;
+        color: #008000;
+        padding: 1px 15px;
+        border-radius: 25px;
+        display: inline-block;
+      }
+      .detail {
+        text-align: left;
+        margin-bottom: 20px;
+      }
+      .dotted {
+        border-bottom: 3px dotted #999;
+        margin: 20px 0;
+      }
+      .qr {
+        text-align: center;
+      }
+      .orderid p {
+        font-size: 15px;
+        font-weight: 500;
+        color: #475569;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame">
+      <div class="ticket">
+        <div class="title">
+          DELUNA MUSIC FESTIVAL 2024
+          <div class="{{ $details['status_badge'] }}">
+            <strong>{{ $details['status'] }}</strong>
+          </div>
+        </div>
+        <div class="detail">
+          <p>{{ $details["name"] }} <br/>
+          {{ $details["email"] }} <br/>
+          {{ $details["nohp"] }}</p>
+          <p>{{ $details["presale"] }} <br/>
+          Kode Tiket : {{ $details["kode_tiket"] }} <br/>
+          Total tiket: {{ $details["jumlah_tiket"] }} <br/>
+          Harga satuan tiket: Rp. {{ $details["harga_tiket"] }} <br/> 
+          Total Harga tiket: Rp. {{ $details["total_harga"] }}</p>
+        </div>
+        <div class="dotted"></div>
+        <div class="qr">
+          <div class="orderid">
+            <h1>E-Ticket Kamu di bawah sini, klik link untuk melihatnya.</h1>
+            <a href="http://127.0.0.1/tickets/customer/detail/{{ $details["link"] }}">Lihat E-Ticket</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+
+{{-- <!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{{ $details["title"] }}</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <style>
       body {
@@ -165,4 +262,4 @@
       </div>
     </div>
   </body>
-</html>
+</html> --}}

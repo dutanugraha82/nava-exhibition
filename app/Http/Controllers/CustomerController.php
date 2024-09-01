@@ -104,13 +104,18 @@ class CustomerController extends Controller
 
     public function payment($uuid){
         $data = Customer::where('kode_registrasi', $uuid)->first();
-        $total_harga = $this->moneyFormat($data->total_harga);
 
-        if ($data->invoice == NULL) {
-            return view('users.order-request', compact('data', 'total_harga'));
-        }else{
-            Alert::info('Kamu sudah melakukan pembayaran!');
-            return redirect('/');
+        if ($data) {
+            if ($data->status_validasi == 1) {
+                Alert::info('Kamu Sudah Melakukan Pembayaran!');
+                return redirect('/');
+            }else{
+                $total_harga = $this->moneyFormat($data->total_harga);
+                return view('users.order-request', compact('data', 'total_harga'));
+            }
+        } else {
+            Alert::error('Akses Ditolak!', 'Data kamu sudah expired! silahkan untuk transaksi ulang dengan email yang berbeda.');
+            return  redirect('/');
         }
         
     }
