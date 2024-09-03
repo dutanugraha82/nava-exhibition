@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="description" content="Psychoforia is an event organized by students of the faculty of psychology, University of Buana Perjuangan Karawang.">
-    <meta name="keywords" content="psychoforia, psikologi karawang, psikologi ubp, ubp">
+    <meta name="keywords" content="psychoforia">
     <meta name="author" content="sangkuriang tech">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta property="og:title" content="Psychoforia 2024" />
