@@ -13,13 +13,16 @@
       </ol>
         <div class="carousel-inner">
           <div class="carousel-item active" style="height: 55vh;">
-            <img src="{{ asset('img/banner.png') }}" class="mx-auto d-block " style="width:95vw; height:100%; border-radius:15px; object-fit: cover;" alt="image">
+            <img src="{{ asset('img/banner1.png') }}" class="mx-auto d-block " style="width:95vw; height:100%; border-radius:15px; object-fit: cover;" alt="image">
           </div>
           <div class="carousel-item" style="height: 55vh;">
-            <img src="{{ asset('img/banner.png') }}" class="mx-auto d-block " style="width:95vw; height:100%; border-radius:15px; object-fit: cover;" alt="image">
+            <img src="{{ asset('img/banner2.png') }}" class="mx-auto d-block " style="width:95vw; height:100%; border-radius:15px; object-fit: cover;" alt="image">
           </div>
           <div class="carousel-item" style="height: 55vh;">
-            <img src="{{ asset('img/banner.png') }}" class="mx-auto d-block " style="width:95vw; height:100%; border-radius:15px; object-fit: cover;" alt="image">
+            <img src="{{ asset('img/banner3.png') }}" class="mx-auto d-block " style="width:95vw; height:100%; border-radius:15px; object-fit: cover;" alt="image">
+          </div>
+          <div class="carousel-item" style="height: 55vh;">
+            <img src="{{ asset('img/banner4.png') }}" class="mx-auto d-block " style="width:95vw; height:100%; border-radius:15px; object-fit: cover;" alt="image">
           </div>
         </div>
        <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
